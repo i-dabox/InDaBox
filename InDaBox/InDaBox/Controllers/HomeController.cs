@@ -17,6 +17,7 @@ namespace InDaBox.Controllers
 
         public IActionResult Privacy()
         {
+            //
             return View();
         }
 
