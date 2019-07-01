@@ -12,6 +12,7 @@ namespace InDaBox.Controllers
     {
         public IActionResult Index()
         {
+            
             return View();
         }
 
