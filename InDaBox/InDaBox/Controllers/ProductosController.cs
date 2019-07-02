@@ -115,7 +115,7 @@ namespace InDaBox.Controllers
             }
             return View(producto);
         }
-
+        //Todo  metodo de borrado logico
         // GET: Productos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

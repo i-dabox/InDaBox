@@ -14,6 +14,7 @@ namespace InDaBox.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+
         public AlmacenesController(ApplicationDbContext context)
         {
             _context = context;
@@ -22,7 +23,7 @@ namespace InDaBox.Controllers
         // GET: Almacenes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Almacen.ToListAsync());
+            return View();
         }
 
         // GET: Almacenes/Details/5
