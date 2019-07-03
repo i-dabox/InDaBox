@@ -13,8 +13,6 @@ namespace InDaBox.Models
         [MaxLength(20)]
         public string Nombre { get; set; }
         [Required]
-        public int NumeroDeSecciones { get; set; }
-
         public int AlmacenId { get; set; }
         public Almacen Almacen { get; set; }
 
