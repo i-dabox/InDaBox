@@ -12,10 +12,6 @@ namespace InDaBox.Models
         [Required]
         [MaxLength(20)]
         public string NombreSeccion { get; set; }
-        [Required]
-        public int NumeroDeColumnas { get; set; }
-        [Required]
-        public int NumeroDeFilas { get; set; }
 
         public int PasilloId { get; set; }
         public Pasillo Pasillo { get; set; }

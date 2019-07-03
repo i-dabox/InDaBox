@@ -57,7 +57,7 @@ namespace InDaBox.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NombreSeccion,NumeroDeColumnas,NumeroDeFilas,PasilloId")] Seccion seccion)
+        public async Task<IActionResult> Create([Bind("Id,NombreSeccion,NumeroDeFilas,PasilloId")] Seccion seccion)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace InDaBox.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreSeccion,NumeroDeColumnas,NumeroDeFilas,PasilloId")] Seccion seccion)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreSeccion,NumeroDeFilas,PasilloId")] Seccion seccion)
         {
             if (id != seccion.Id)
             {
