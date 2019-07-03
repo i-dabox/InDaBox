@@ -9,35 +9,124 @@
 <h4>Almacen</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4" id="crearAlmacen">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Direccion" class="control-label"></label>
-                <input asp-for="Direccion" class="form-control" />
-                <span asp-validation-for="Direccion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CodigoPostal" class="control-label"></label>
-                <input asp-for="CodigoPostal" class="form-control" />
-                <span asp-validation-for="CodigoPostal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Poblacion" class="control-label"></label>
-                <input asp-for="Poblacion" class="form-control" />
-                <span asp-validation-for="Poblacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div id="almacen">
+
+                <div class="form-group">
+                    <h1 calss="abierto">Almacen</h1> <!--icono-->
+                    <hr>
+                    <label asp-for="Nombre" class="control-label" placeholder="Nombre"></label>
+                    <input asp-for="Nombre" class="form-control" placeholder="Nombre" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Direccion" class="control-label"></label>
+                    <input asp-for="Direccion" class="form-control" placeholder="Dirección" />
+                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CodigoPostal" class="control-label"></label>
+                    <input asp-for="CodigoPostal" class="form-control" placeholder="Codigo postal" />
+                    <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Poblacion" class="control-label"></label>
+                    <input asp-for="Poblacion" class="form-control" placeholder="Población" />
+                    <span asp-validation-for="Poblacion" class="text-danger"></span>
+
+                    <div id="pasillo">
+
+                        <h1 class="abierto">Pasillo</h1> <!--icono-->
+                        <hr>
+                        <div>
+                            <label ="NumeroDePasillos" class="control-label"></label>  <!--Mio-->
+                            <input ="NumeroDePasillos" class="form-control" placeholder="Numero de pasillos" />
+                        </div>
+                        <div>
+                            <label asp-for="Nombre" class="control-label"></label> <!--cuidado no es nombre de almacen-->
+                            <input asp-for="Nombre" class="form-control" placeholder="Nombre de pasillo" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+
+                            <div class="form-group">
+                                <h1 class="abierto">Nombre pasillo</h1> <!--icono-->
+                                <hr>
+                                <div class="form-group">
+                                    <label ="NumeroDeSecciones" class="control-label"></label> <!--Mio-->
+                                    <input ="NumeroDeSecciones" class="form-control" />
+                                </div>
+                                <div>
+                                    <label asp-for="NombreSeccion" class="control-label"></label>
+                                    <input asp-for="NombreSeccion" class="form-control" placeholder="Nombre de sección" />
+                                    <span asp-validation-for="NombreSeccion" class="text-danger"></span>
+
+                                    <div class="form-group seccion">
+                                        <h1 class="abierto">Nombre seccion</h1> <!--icono-->
+                                        <hr>
+                                        <div class="form-group">
+                                            <label asp-for="NumeroDeColumnas" class="control-label"></label>
+                                            <input asp-for="NumeroDeColumnas" class="form-control" placeholder="Numero de columnas" />
+                                            <span asp-validation-for="NumeroDeColumnas" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="NumeroDeFilas" class="control-label"></label>
+                                            <input asp-for="NumeroDeFilas" class="form-control" placeholder="Numero de filas" />
+                                            <span asp-validation-for="NumeroDeFilas" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
 </div>
+
+
+
+<div>
+    <h1 class="abierto">Nombre pasillo</h1> <!--icono-->
+    <hr>
+    <div class="form-group">
+        <label ="NumeroDeSecciones" class="control-label"></label> <!--Mio-->
+        <input ="NumeroDeSecciones" class="form-control" />
+    </div>
+</div>
+    <div>
+        <label asp-for="NombreSeccion" class="control-label"></label>
+        <input asp-for="NombreSeccion" class="form-control" placeholder="Nombre de sección" />
+        <span asp-validation-for="NombreSeccion" class="text-danger"></span>
+
+        <div class="form-group seccion">
+            <h1 class="abierto">Nombre seccion</h1> <!--icono-->
+            <hr>
+            <div class="form-group">
+                <label asp-for="NumeroDeColumnas" class="control-label"></label>
+                <input asp-for="NumeroDeColumnas" class="form-control" placeholder="Numero de columnas" />
+                <span asp-validation-for="NumeroDeColumnas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroDeFilas" class="control-label"></label>
+                <input asp-for="NumeroDeFilas" class="form-control" placeholder="Numero de filas" />
+                <span asp-validation-for="NumeroDeFilas" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
 <div>
     <a asp-action="Index">Back to List</a>
@@ -46,3 +135,6 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
+
