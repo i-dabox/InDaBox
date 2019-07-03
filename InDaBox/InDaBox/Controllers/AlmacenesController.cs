@@ -22,12 +22,7 @@ namespace InDaBox.Controllers
         // GET: Almacenes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Almacen
-                .Include(almacen=>almacen.Pasillos)
-                    .ThenInclude(pasillo=>pasillo.Secciones)
-                        .ThenInclude(seccion=>seccion.Columnas)
-                            .ThenInclude(columna=>columna.Filas)
-                .ToListAsync());
+            return View(await _context.Almacen.ToListAsync());
         }
 
         // GET: Almacenes/Details/5
