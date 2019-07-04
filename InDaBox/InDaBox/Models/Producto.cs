@@ -18,5 +18,7 @@ namespace InDaBox.Models
         public DateTime? Caducidad { get; set; }
         public int Cantidad { get; set; }
         public bool Borrado { get; set; }
+
+        
     }
 }
