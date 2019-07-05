@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using InDaBox.Data;
 using InDaBox.Models;
 
+
 namespace InDaBox.Controllers
 {
     public class AlmacenesController : Controller
     {
         private readonly ApplicationDbContext _context;
-
 
         public AlmacenesController(ApplicationDbContext context)
         {
@@ -23,19 +23,20 @@ namespace InDaBox.Controllers
         // GET: Almacenes
         public async Task<IActionResult> Index()
         {
-            return View();
+            List<Almacen> almacen = await _context.Almacen.Include(a => a.Pasillos).ThenInclude(s => s.Secciones).ThenInclude(c => c.Columnas).ThenInclude(r => r.Filas).ToListAsync();
+            return View(await _context.Almacen.ToListAsync());
         }
 
         // GET: Almacenes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
+            Almacen almacen = await _context.Almacen.Include(a => a.Pasillos).ThenInclude(s => s.Secciones).ThenInclude(c => c.Columnas).ThenInclude(r => r.Filas).FirstOrDefaultAsync(x => x.Id == id);
 
-            var almacen = await _context.Almacen
-                .FirstOrDefaultAsync(m => m.Id == id);
             if (almacen == null)
             {
                 return NotFound();
@@ -74,7 +75,7 @@ namespace InDaBox.Controllers
                 return NotFound();
             }
 
-            var almacen = await _context.Almacen.FindAsync(id);
+            Almacen almacen = await _context.Almacen.FindAsync(id);
             if (almacen == null)
             {
                 return NotFound();
@@ -125,7 +126,7 @@ namespace InDaBox.Controllers
                 return NotFound();
             }
 
-            var almacen = await _context.Almacen
+            Almacen almacen = await _context.Almacen
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (almacen == null)
             {
@@ -140,7 +141,7 @@ namespace InDaBox.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var almacen = await _context.Almacen.FindAsync(id);
+           Almacen almacen = await _context.Almacen.FindAsync(id);
             _context.Almacen.Remove(almacen);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

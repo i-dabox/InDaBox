@@ -48,7 +48,7 @@ namespace InDaBox.Controllers
         // GET: Columnas/Create
         public IActionResult Create()
         {
-            ViewData["SeccionId"] = new SelectList(_context.Seccion, "Id", "NombreSeccion");
+            ViewData["SeccionId"] = new SelectList(_context.Seccion, "Id", "Nombre");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace InDaBox.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SeccionId"] = new SelectList(_context.Seccion, "Id", "NombreSeccion", columna.SeccionId);
+            ViewData["SeccionId"] = new SelectList(_context.Seccion, "Id", "Nombre", columna.SeccionId);
             return View(columna);
         }
 
@@ -82,7 +82,7 @@ namespace InDaBox.Controllers
             {
                 return NotFound();
             }
-            ViewData["SeccionId"] = new SelectList(_context.Seccion, "Id", "NombreSeccion", columna.SeccionId);
+            ViewData["SeccionId"] = new SelectList(_context.Seccion, "Id", "Nombre", columna.SeccionId);
             return View(columna);
         }
 
@@ -118,7 +118,7 @@ namespace InDaBox.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SeccionId"] = new SelectList(_context.Seccion, "Id", "NombreSeccion", columna.SeccionId);
+            ViewData["SeccionId"] = new SelectList(_context.Seccion, "Id", "Nombre", columna.SeccionId);
             return View(columna);
         }
 

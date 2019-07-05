@@ -11,7 +11,7 @@ namespace InDaBox.Models
         public int Id { get; set; }
         [Required]
         [MaxLength(20)]
-        public string NombreSeccion { get; set; }
+        public string Nombre { get; set; }
 
         public int PasilloId { get; set; }
         public Pasillo Pasillo { get; set; }

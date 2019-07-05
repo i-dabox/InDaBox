@@ -115,6 +115,31 @@ namespace InDaBox.Controllers
             }
             return View(producto);
         }
+        public async Task<IActionResult> BorrarProductosRotos(int id, int productosRotos)
+        {
+            Producto producto = await _context.Producto.FirstOrDefaultAsync(Id => Id.Id == id);
+            producto.Cantidad -= productosRotos;
+
+            _context.Entry(producto).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductoExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
         //Todo  metodo de borrado logico
         // GET: Productos/Delete/5
         public async Task<IActionResult> Delete(int? id)

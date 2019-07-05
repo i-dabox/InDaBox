@@ -22,7 +22,7 @@ namespace InDaBox.Controllers
         // GET: Localizaciones
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Localizacion.Include(l => l.Fila).Include(l => l.Producto);
+            var applicationDbContext = _context.Localizacion.Include(l => l.Fila).Include(l => l.Producto);//Todo filtro
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -50,7 +50,7 @@ namespace InDaBox.Controllers
         public IActionResult Create()
         {
             ViewData["FilaId"] = new SelectList(_context.Fila, "Id", "Nombre");
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Nombre");
+            ViewData["ProductoId"] = new SelectList(_context.Producto.Where(prod=>prod.Borrado == false) , "Id", "Nombre");
             return View();
         }
 
@@ -86,7 +86,7 @@ namespace InDaBox.Controllers
                 return NotFound();
             }
             ViewData["FilaId"] = new SelectList(_context.Fila, "Id", "Nombre", localizacion.FilaId);
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Nombre", localizacion.ProductoId);
+            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Nombre", localizacion.ProductoId);//Todo filtro
             return View(localizacion);
         }
 
@@ -95,9 +95,14 @@ namespace InDaBox.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FilaId,ProductoId")] Localizacion localizacion)
+        public async Task<IActionResult> Edit(int localizacionId, int filaId)
         {
-            if (id != localizacion.Id)
+            Localizacion localizacion = _context.Localizacion.FirstOrDefault(locID => locID.Id == localizacionId);
+            if (localizacion != null)
+            {
+                localizacion.FilaId = filaId;
+            }
+            else
             {
                 return NotFound();
             }
@@ -110,7 +115,7 @@ namespace InDaBox.Controllers
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
-                {
+                {   
                     if (!LocalizacionExists(localizacion.Id))
                     {
                         return NotFound();
@@ -123,7 +128,7 @@ namespace InDaBox.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["FilaId"] = new SelectList(_context.Fila, "Id", "Nombre", localizacion.FilaId);
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Nombre", localizacion.ProductoId);
+            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Nombre", localizacion.ProductoId);//Todo filtro
             return View(localizacion);
         }
 
