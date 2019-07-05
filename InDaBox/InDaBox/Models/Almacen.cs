@@ -16,7 +16,7 @@ namespace InDaBox.Models
         [MaxLength(30)]
         public string Direccion { get; set; }
         [Required]
-        [MaxLength(5)]
+        //[MaxLength(5)]
         public int CodigoPostal { get; set; }
         [Required]
         [MaxLength(20)]

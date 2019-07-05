@@ -23,7 +23,7 @@ namespace InDaBox.Controllers
         // GET: Almacenes
         public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Almacen.ToListAsync());
         }
 
         // GET: Almacenes/Details/5
@@ -55,8 +55,27 @@ namespace InDaBox.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Direccion,CodigoPostal,Poblacion")] Almacen almacen)
+        public async Task<IActionResult> Create(//[Bind("Almacen Almacenes,Pasillo Pasillos,Seccion Secciones,Columna Columnas,Fila Filas")] AlmacenVm Almacenes,
+                                                 [Bind("Nombre,Direccion,CodigoPostal,Poblacion,Pasillos")] Almacen almacen)
+                                                 //[Bind("Pasillos.Nombre")] Pasillo pasillo, [Bind("Secciones.NombreSeccion")] Seccion seccion);
         {
+            //foreach (Pasillo pasillo in almacen.Pasillos)
+            //{
+            //    pasillo.Almacen = almacen;
+            //    foreach(Seccion seccion in pasillo.Secciones)
+            //    {
+            //        seccion.Pasillo = pasillo;
+            //        foreach(Columna columna in seccion.Columnas)
+            //        {
+            //            columna.Seccion = seccion;
+            //            foreach(Fila fila in columna.Filas)
+            //            {
+            //                fila.Columna = columna;
+            //            }
+            //        }
+            //    }
+            //}
+
             if (ModelState.IsValid)
             {
                 _context.Add(almacen);
