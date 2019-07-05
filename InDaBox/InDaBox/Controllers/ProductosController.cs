@@ -7,22 +7,31 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InDaBox.Data;
 using InDaBox.Models;
+using InDaBox.Services;
 
 namespace InDaBox.Controllers
 {
     public class ProductosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IProducto _productoServices;
 
-        public ProductosController(ApplicationDbContext context)
+
+        public ProductosController(ApplicationDbContext context, IProducto productoServices)
         {
             _context = context;
+            _productoServices = productoServices;
+
         }
 
         // GET: Productos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string busqueda)
         {
-            return View(await _context.Producto.ToListAsync());
+
+            //List<Producto> s = await _productoServices.ProductoCaducado();
+
+            List<Producto> productos = await _productoServices.BusquedaProducto(busqueda);
+            return View(productos);
         }
 
         // GET: Productos/Details/5
@@ -63,6 +72,14 @@ namespace InDaBox.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(producto);
+        }
+
+
+        //Borrado Logico
+        private void Borrado(Producto producto)
+        {
+            _productoServices.BorradoProducto(producto);
+
         }
 
         // GET: Productos/Edit/5
@@ -143,13 +160,13 @@ namespace InDaBox.Controllers
         //Todo  metodo de borrado logico
         // GET: Productos/Delete/5
         public async Task<IActionResult> Delete(int? id)
-        {
+        { //TODO preguntar si es necesario que el borrado logico suponga un valor de cantidad = 0 o no es necesario.
             if (id == null)
             {
                 return NotFound();
             }
 
-            var producto = await _context.Producto
+            Producto producto = await _context.Producto
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (producto == null)
             {
@@ -157,6 +174,8 @@ namespace InDaBox.Controllers
             }
 
             return View(producto);
+            //return View(Borrado(producto));
+
         }
 
         // POST: Productos/Delete/5
@@ -165,8 +184,10 @@ namespace InDaBox.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var producto = await _context.Producto.FindAsync(id);
-            _context.Producto.Remove(producto);
-            await _context.SaveChangesAsync();
+            //_context.Producto.Remove(producto);
+            //await _context.SaveChangesAsync();
+            Borrado(producto);
+
             return RedirectToAction(nameof(Index));
         }
 

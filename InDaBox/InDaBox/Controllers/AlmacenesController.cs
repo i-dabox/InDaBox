@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using InDaBox.Data;
 using InDaBox.Models;
 
-
 namespace InDaBox.Controllers
 {
     public class AlmacenesController : Controller
@@ -30,7 +29,6 @@ namespace InDaBox.Controllers
         // GET: Almacenes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-
             if (id == null)
             {
                 return NotFound();
