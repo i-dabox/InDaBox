@@ -7,44 +7,31 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InDaBox.Data;
 using InDaBox.Models;
+using InDaBox.Services;
 
 namespace InDaBox.Controllers
 {
     public class ProductosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IProducto _productoServices;
 
-        public ProductosController(ApplicationDbContext context)
+
+        public ProductosController(ApplicationDbContext context, IProducto productoServices)
         {
             _context = context;
+            _productoServices = productoServices;
+
         }
 
         // GET: Productos
         public async Task<IActionResult> Index(string busqueda)
         {
-            if (busqueda != null)
-            {
-                List<Producto> productos = _context.Producto.Where(producto => producto.Borrado != true).ToList();
 
-                if(productos.Where(x=>x.Nombre.ToLower().Contains(busqueda.ToLower())).ToList().Count > 0)
-                {
-                    productos = productos.Where(x => x.Nombre.ToLower().Contains(busqueda.ToLower())).ToList();
-                }
+            //List<Producto> s = await _productoServices.ProductoCaducado();
 
-                if(DateTime.TryParse(busqueda, out DateTime result))
-                {
-                    productos = productos.Where(x => x.Caducidad == Convert.ToDateTime(busqueda)).ToList();
-                }
-                if (Int32.TryParse(busqueda, out int resultado))
-                {
-                    productos = productos.Where(x => x.Cantidad == Convert.ToInt32(busqueda)).ToList();
-                }
-                return View(productos);
-            }
-            else
-            {
-                return View(await _context.Producto.Where(producto => producto.Borrado != true).ToListAsync());
-            }
+            List<Producto> productos = await _productoServices.BusquedaProducto(busqueda);
+            return View(productos);
         }
 
         // GET: Productos/Details/5
@@ -91,12 +78,7 @@ namespace InDaBox.Controllers
         //Borrado Logico
         private void Borrado(Producto producto)
         {
-            // poner el booleano de este producto en true producto
-
-            producto.Borrado = true;
-            // actualizar bbdd
-            _context.Update(producto);
-            _context.SaveChanges();
+            _productoServices.BorradoProducto(producto);
 
         }
 
