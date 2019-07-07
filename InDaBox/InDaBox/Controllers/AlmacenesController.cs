@@ -54,27 +54,8 @@ namespace InDaBox.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(//[Bind("Almacen Almacenes,Pasillo Pasillos,Seccion Secciones,Columna Columnas,Fila Filas")] AlmacenVm Almacenes,
-                                                 [Bind("Nombre,Direccion,CodigoPostal,Poblacion,Pasillos")] Almacen almacen)
-                                                 //[Bind("Pasillos.Nombre")] Pasillo pasillo, [Bind("Secciones.NombreSeccion")] Seccion seccion);
+        public async Task<IActionResult> Create([Bind("Nombre,Direccion,CodigoPostal,Poblacion,Pasillos")] Almacen almacen)
         {
-            //foreach (Pasillo pasillo in almacen.Pasillos)
-            //{
-            //    pasillo.Almacen = almacen;
-            //    foreach(Seccion seccion in pasillo.Secciones)
-            //    {
-            //        seccion.Pasillo = pasillo;
-            //        foreach(Columna columna in seccion.Columnas)
-            //        {
-            //            columna.Seccion = seccion;
-            //            foreach(Fila fila in columna.Filas)
-            //            {
-            //                fila.Columna = columna;
-            //            }
-            //        }
-            //    }
-            //}
-
             if (ModelState.IsValid)
             {
                 _context.Add(almacen);

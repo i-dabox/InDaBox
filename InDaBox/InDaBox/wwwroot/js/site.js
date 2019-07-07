@@ -35,16 +35,16 @@ function mostrarPasillos() {
     </div>
     <div>
         <label  class="control-label">Nombre de sección</label>
-        <input id="Pasillos[${i}].Secciones[${i}].NombreSeccion" name="Pasillos[${i}].Secciones[${i}].NombreSeccion" class="form-control"/>
+        <input id="Pasillos[${i}].Secciones[${i}].Nombre" name="Pasillos[${i}].Secciones[${i}].Nombre" class="form-control"/>
         <span class="text-danger"></span>
     </div>
     <div id="insertarSeccion${i}"></div>`
         );
-        let seccion = i;
+        let seccion = i; 
         $(`#NumeroDeSecciones${seccion}`).change(function() {
             mostrarSecciones(seccion);
         });
-        $(`#Pasillos\\[${seccion}\\]\\.Secciones\\[${seccion}\\]\\.NombreSeccion`).change(function() {
+        $(`#Pasillos\\[${seccion}\\]\\.Secciones\\[${seccion}\\]\\.Nombre`).change(function() {
             mostrarSecciones(seccion);
         });
     };
@@ -59,7 +59,7 @@ function mostrarPasillos() {
 
 function mostrarSecciones(seccion) {
     let numeroSeccion = $(`#NumeroDeSecciones${seccion}`).val();
-    let nombreSeccion = $(`#Pasillos\\[${seccion}\\]\\.Secciones\\[${seccion}\\]\\.NombreSeccion`).val();
+    let nombreSeccion = $(`#Pasillos\\[${seccion}\\]\\.Secciones\\[${seccion}\\]\\.Nombre`).val();
     let pasillo = seccion;
     if (numeroSeccion === "" || nombreSeccion === "") {
         return;
@@ -69,7 +69,7 @@ function mostrarSecciones(seccion) {
         $('#insertarSeccion' + pasillo).append(
             `<div class="flecha">
      <h1 class="insertarNombreSeccion" id="seccionUnica_${pasillo}${i}"}></h1> 
-     <input type="hidden" value="nombrepasillo" name="Pasillos[${pasillo}].Secciones[${i}].NombreSeccion">
+     <input type="hidden" value="nombrepasillo" name="Pasillos[${pasillo}].Secciones[${i}].Nombre">
      <hr>
      </div>
      <div class="form-group">
@@ -85,8 +85,8 @@ function mostrarSecciones(seccion) {
     </div>`
         );
         let seccion = i;
-        $(`#Pasillos\\[${pasillo}\\]\\.Secciones\\[${pasillo}\\]\\.NombreSeccion`).change(
-            nombreSecciones(seccion, pasillo, nombreSeccion));  
+        $(`#Pasillos\\[${pasillo}\\]\\.Secciones\\[${pasillo}\\]\\.Nombre`).change(
+            nombreSecciones(seccion, pasillo, nombreSeccion)); // a ver rellena el formulario y mandame pantallazo antes de enviar
        
         $(`#numeroDeColumnas_${pasillo}${i}`).change(function () {
             insertarHidden(pasillo,seccion);
