@@ -15,23 +15,22 @@ namespace InDaBox.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IProducto _productoServices;
+        private readonly ILocalizacion _localizacionServices;
 
 
-        public ProductosController(ApplicationDbContext context, IProducto productoServices)
+        public ProductosController(ApplicationDbContext context, IProducto productoServices,ILocalizacion localizacionServices)
         {
             _context = context;
             _productoServices = productoServices;
-
+            _localizacionServices = localizacionServices;
         }
 
         // GET: Productos
         public async Task<IActionResult> Index(string busqueda)
         {
 
-            //List<Producto> s = await _productoServices.ProductoCaducado();
-
-            List<Producto> productos = await _productoServices.BusquedaProducto(busqueda);
-            return View(productos);
+            List<Localizacion> localizaciones = await _localizacionServices.BusquedaLocalizacion(busqueda);
+            return View(localizaciones);
         }
 
         // GET: Productos/Details/5
@@ -157,7 +156,7 @@ namespace InDaBox.Controllers
 
             return RedirectToAction("Index");
         }
-        //Todo  metodo de borrado logico
+        
         // GET: Productos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         { //TODO preguntar si es necesario que el borrado logico suponga un valor de cantidad = 0 o no es necesario.
