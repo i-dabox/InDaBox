@@ -15,7 +15,11 @@ namespace InDaBox.Controllers
             
             return View();
         }
+        public IActionResult MainMenu()
+        {
 
+            return View();
+        }
         public IActionResult Privacy()
         {
             //

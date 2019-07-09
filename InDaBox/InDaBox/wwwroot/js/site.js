@@ -19,7 +19,7 @@ function mostrarPasillos() {
     $('#insertarPasillo').empty();
     for (var i = 0; i < numeroPasillo; i++) {
         $('#insertarPasillo')
-            .append(`<input type="hidden" value="${nombrePasillo}" name="Pasillos[${i}].Nombre" />`);
+            .append(`<input type="hidden" value="${nombrePasillo}" name="Pasillos[${i}].Nombre" />`); 
     }
 
     for (var i = 0; i < numeroPasillo; i++) {
