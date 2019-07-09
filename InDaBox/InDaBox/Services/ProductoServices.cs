@@ -26,7 +26,25 @@ namespace InDaBox.Services
             _context.SaveChanges();
         }
 
-        async public Task<List<Producto>> BusquedaProducto(string busqueda)
+       
+
+        public Task<List<Producto>> ProductoCaducado()//(string busqueda)
+        {
+            //if (busqueda != null)
+            //{
+            List<Producto> productos = _context.Producto.Where(producto => producto.Borrado != true && (producto.Caducidad < (DateTime.Now) || (producto.Caducidad < (DateTime.Now.AddDays(7))))).ToList();
+
+            return Task.FromResult(productos);
+            
+            //if (Caducidad != null)
+            //{
+                
+            //    List<Producto> caducados = _context.Producto.Where(producto => producto.Caducidad != Null).ToList();
+            //    // }
+            //}
+        }
+
+     async Task<List<Producto>> IProducto.BusquedaProducto(string busqueda)
         {
             if (busqueda != null)
             {
@@ -54,25 +72,10 @@ namespace InDaBox.Services
                 return await _context.Producto.Where(producto => producto.Borrado != true).ToListAsync();
             }
         }
-
-        public Task<List<Producto>> ProductoCaducado()//(string busqueda)
-        {
-            //if (busqueda != null)
-            //{
-            List<Producto> productos = _context.Producto.Where(producto => producto.Borrado != true && (producto.Caducidad < (DateTime.Now) || (producto.Caducidad < (DateTime.Now.AddDays(7))))).ToList();
-
-            return Task.FromResult(productos);
-            
-            //if (Caducidad != null)
-            //{
-                
-            //    List<Producto> caducados = _context.Producto.Where(producto => producto.Caducidad != Null).ToList();
-            //    // }
-            //}
-        }
+    }
     }
 
 
 
 
-}
+

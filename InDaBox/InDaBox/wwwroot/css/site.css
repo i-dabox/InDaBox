@@ -7,6 +7,19 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+/*Estilo contenedor Log In*/
+#Contenedor {
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(#47b68b,#4d82b4);
+    border-radius: 10px;
+    margin: auto;
+    box-sizing: border-box;
+    color:white;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

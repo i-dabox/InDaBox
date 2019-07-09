@@ -95,7 +95,7 @@ namespace InDaBox.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int localizacionId, int filaId)
+        public async Task<IActionResult> Edit(int? localizacionId, int filaId)
         {
             Localizacion localizacion = _context.Localizacion.FirstOrDefault(locID => locID.Id == localizacionId);
             if (localizacion != null)

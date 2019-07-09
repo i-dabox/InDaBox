@@ -36,6 +36,7 @@ namespace InDaBox
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddTransient<IProducto, ProductoServices>();
+            services.AddTransient<ILocalizacion, LocalizacionServices>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
