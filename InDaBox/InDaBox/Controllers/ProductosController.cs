@@ -160,7 +160,6 @@ namespace InDaBox.Controllers
 
             return RedirectToAction("Index");
         }
-
         // GET: Productos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         { //TODO preguntar si es necesario que el borrado logico suponga un valor de cantidad = 0 o no es necesario.
@@ -177,7 +176,6 @@ namespace InDaBox.Controllers
             }
 
             return View(producto);
-            //return View(Borrado(producto));
 
         }
 
@@ -200,4 +198,3 @@ namespace InDaBox.Controllers
         }
     }
 }
-

@@ -2,49 +2,82 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "_LayoutProducto";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
+<link rel="stylesheet" href="~/css/menuLateral.css">
 
 <div class="row">
-    @foreach (Producto producto in Model)
-    {
-        <div class="col-md-3">
-            <div class="card " @*style="width:300px; margin-bottom:10px" *@>
 
-                <img class="card-img-top" style="border-radius:10px" src=@Url.Content(producto.Imagen)>
-               
-                <div class="card-body">
-                    <h4 class="card-title">Nombre=@producto.Nombre</h4>
-                    @if (producto.Localizaciones.Count != 0)
-                    {
-                        @foreach (Localizacion localizacion in producto.Localizaciones)
-                        {
-                            <h4 class="card-title">localizacion=@localizacion.Fila.Nombre </h4>
 
-                        }
-                    }
-                    else
-                    {
-                        <a asp-controller="Localizaciones" asp-action="Create">Insertar Localizacion</a>
-                    }
+    <aside class="container-menu col-3">
+        <h1 class="btn-almacen">
+            <a asp-controller="Almacenes" asp-action="Index">Almacenes</a>
+        </h1>
+        <h1>
+            <a href="#" class="btn-busqueda">Busquedas frecuentes</a>
+        </h1>
+        <hr />
 
-                </div>
-                <div>
-
-                    <a asp-action="Edit" asp-route-id="@producto.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@producto.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@producto.Id">Delete</a>
-
-                </div>
+        <ul class="menu">
+            <ul class="guardados">
+                <li><a href="#">Item 1 </a></li>
+                <li><a href="#">Item 2 </a></li>
+                <li><a href="#">Item 3 </a></li>
+                <li><a href="#">Item 4 </a></li>
+                <li><a href="#">Item 5 </a></li>
+                <li><a href="#">Item 6 </a></li>
+                <li><a href="#">Item 7 </a></li>
+                <li><a href="#">Item 8 </a></li>
+                <li><a href="#">Item 9 </a></li>
+                <li><a href="#">Item 10 </a></li>
+            </ul>
+        </ul>
+        <p class="createNew">
+            <a asp-action="Create"><i class="icono izquierda fas fa-plus"></i>Añadir producto</a>
+        </p>
+    </aside>
+    <div class="col">
+        <div class="row">
+            <div class="titulo">
+                <h1>Productos</h1>
             </div>
         </div>
-    }
-</div>
+        <div class="row productosMuestra">
+            @foreach (Producto producto in Model)
+            {
+                <div class="col-2">
 
+                    <div class="card">
+
+                        <img class="card-img-top" style="border-radius:10px" src=@Url.Content(producto.Imagen)>
+
+                        <div class="card-body">
+                            <h4 class="card-title">Nombre=@producto.Nombre</h4>
+                            @if (producto.Localizaciones.Count != 0)
+                            {
+                                @foreach (Localizacion localizacion in producto.Localizaciones)
+                                {
+                                    <h4 class="card-title">localizacion=@localizacion.Fila.Nombre </h4>
+
+                                }
+                            }
+                            else
+                            {
+                                <a asp-controller="Localizaciones" asp-action="Create">Insertar Localizacion</a>
+                            }
+
+                        </div>
+                        <div>
+
+                            <a asp-action="Edit" asp-route-id="@producto.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@producto.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@producto.Id">Delete</a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
 

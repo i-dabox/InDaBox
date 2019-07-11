@@ -26,8 +26,6 @@ namespace InDaBox.Services
             _context.SaveChanges();
         }
 
-
-
         public Task<List<Producto>> ProductoCaducado()//(string busqueda)
         {
             //if (busqueda != null)

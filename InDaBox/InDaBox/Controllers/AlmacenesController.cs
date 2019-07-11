@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InDaBox.Data;
 using InDaBox.Models;
+using InDaBox.Services;
 
 namespace InDaBox.Controllers
 {
     public class AlmacenesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IAlmacen _almacenServices;
 
-        public AlmacenesController(ApplicationDbContext context)
+        public AlmacenesController(ApplicationDbContext context, IAlmacen almacenServices)
         {
             _context = context;
+            _almacenServices = almacenServices;
         }
 
         // GET: Almacenes
@@ -72,8 +75,8 @@ namespace InDaBox.Controllers
             {
                 return NotFound();
             }
+            Almacen almacen = await _context.Almacen.Include(a => a.Pasillos).ThenInclude(s => s.Secciones).ThenInclude(c => c.Columnas).ThenInclude(r => r.Filas).FirstOrDefaultAsync(x => x.Id == id);
 
-            Almacen almacen = await _context.Almacen.FindAsync(id);
             if (almacen == null)
             {
                 return NotFound();
@@ -86,8 +89,9 @@ namespace InDaBox.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Direccion,CodigoPostal,Poblacion")] Almacen almacen)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Direccion,CodigoPostal,Poblacion,Pasillos")] Almacen almacen)
         {
+            await _almacenServices.VaciarHijosAlmacen(almacen);
             if (id != almacen.Id)
             {
                 return NotFound();
@@ -139,7 +143,7 @@ namespace InDaBox.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-           Almacen almacen = await _context.Almacen.FindAsync(id);
+            Almacen almacen = await _context.Almacen.FindAsync(id);
             _context.Almacen.Remove(almacen);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
