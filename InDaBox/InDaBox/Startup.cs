@@ -37,6 +37,7 @@ namespace InDaBox
             });
             services.AddTransient<IAlmacen, AlmacenServices>();
             services.AddTransient<IProducto, ProductoServices>();
+            services.AddTransient<ILocalizacion, LocalizacionServices>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));

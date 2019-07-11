@@ -19,6 +19,6 @@ namespace InDaBox.Models
         public int Cantidad { get; set; }
         public bool Borrado { get; set; }
 
-        
+        public List<Localizacion> Localizaciones { get; set; }
     }
 }

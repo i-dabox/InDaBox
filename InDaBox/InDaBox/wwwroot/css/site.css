@@ -7,6 +7,19 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+/*Estilo contenedor Log In*/
+#Contenedor {
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(#47b68b,#4d82b4);
+    border-radius: 10px;
+    margin: auto;
+    box-sizing: border-box;
+    color:white;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -42,8 +55,9 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    
 }
 .footer {
   position: absolute;
@@ -60,3 +74,137 @@ body {
 .flecha .abierto{
     background-image: url(../img/arrow-down-sign-to-navigate.svg);
 }*/
+
+/*---------------color fondo-----------------------------*/
+.bkgc1{
+    background-color:rgb(209,209,209);
+}
+.bkgc2 {
+    background-color: rgb(255,255,255);
+}
+/*---------------Index-----------------------------*/
+.productos {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 45pt;
+    color: #ffffff;
+    height: 100%;
+    margin-left: 10%;
+    margin-top: 20%;
+}
+.almacenes {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 45pt;
+    color: #272a39;
+    height: 100%;   
+    margin-right: 10%;
+}
+.container-fluid mio {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    
+    
+}
+.bckpic {
+     position: relative;
+     height: 90vh;
+}
+
+.img_cascos {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: radial-gradient(circle closest-side at 48% 59%, 
+    rgba(29, 28, 38, 1)0%, rgba(29, 28, 38, 0.07)53%,
+    rgba(29, 28, 38, 0.06)67%, rgba(29, 28, 38, 0.03)80%, 
+    rgba(29,28,38,0)100%);
+
+    height: 80vh;
+}
+
+.bkgc1,
+.bkgc2{
+    height:100%;
+   
+}
+.pro {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+}
+.alm {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    box-sizing: border-box;
+    margin-top: 40%;
+}
+.split {
+    background: linear-gradient(to left, #ffffff 50%, #d1d1d1 50%);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 17pt;
+}
+.split .navbar-nav .nav-item .font_colour{
+
+    color: #ffffff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #272a39;
+}
+#homeColor .navbar-light .navbar-nav .nav-link {
+    color: #ffffff;
+}
+.navbar-light .navbar-brand {
+    color: #ffffff;
+}
+.left_colour {
+    color: #272a39;
+}
+
+.productosMuestra hr {
+    border: 3px;
+}
+
+
+/*--------Card Productos------------*/
+.productosMuestra {
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+    padding: 7px;
+    margin-left: auto;
+    margin-top: 200px;
+}
+.pic {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.fontEdit a{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 9pt;
+    padding:7px;
+    padding-bottom:7px;
+}
+.card h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12pt;
+    text-align: left;
+    padding: 7px;
+    color: #272a39;
+}
+.card {
+    box-shadow: 5px 12px 16px 0px rgba(0,0,0,0.34);
+}

@@ -354,7 +354,7 @@ namespace InDaBox.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("InDaBox.Models.Producto", "Producto")
-                        .WithMany()
+                        .WithMany("Localizaciones")
                         .HasForeignKey("ProductoId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

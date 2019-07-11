@@ -11,5 +11,7 @@ namespace InDaBox.Services
          void BorradoProducto(Producto producto);
          Task<List<Producto>> BusquedaProducto(string busqueda);
         Task<List<Producto>> ProductoCaducado();
+
+        Task<List<Producto>> ProductoLocacion();
     }
 }
