@@ -157,7 +157,7 @@ namespace InDaBox.Controllers
 
             return RedirectToAction("Index");
         }
-        //Todo  metodo de borrado logico
+        
         // GET: Productos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         { //TODO preguntar si es necesario que el borrado logico suponga un valor de cantidad = 0 o no es necesario.

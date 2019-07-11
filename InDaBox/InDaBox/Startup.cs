@@ -35,6 +35,7 @@ namespace InDaBox
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddTransient<IAlmacen, AlmacenServices>();
             services.AddTransient<IProducto, ProductoServices>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
