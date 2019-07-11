@@ -55,9 +55,9 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    
 }
 .footer {
   position: absolute;
@@ -74,12 +74,15 @@ body {
 .flecha .abierto{
     background-image: url(../img/arrow-down-sign-to-navigate.svg);
 }*/
+
+/*---------------color fondo-----------------------------*/
 .bkgc1{
     background-color:rgb(209,209,209);
 }
 .bkgc2 {
     background-color: rgb(255,255,255);
 }
+/*---------------Index-----------------------------*/
 .productos {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -164,4 +167,43 @@ body {
 }
 .left_colour {
     color: #272a39;
+}
+.productosMuestra hr {
+    border: 3px;
+}
+
+
+/*--------Card Productos------------*/
+.productosMuestra {
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+    padding: 7px;
+    margin-left: auto;
+    margin-top: 200px;
+}
+.pic {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.fontEdit a{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 9pt;
+    padding:7px;
+    padding-bottom:7px;
+}
+.card h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12pt;
+    text-align: left;
+    padding: 7px;
+    color: #272a39;
+}
+.card {
+    box-shadow: 5px 12px 16px 0px rgba(0,0,0,0.34);
 }
