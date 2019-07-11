@@ -8,6 +8,7 @@
 
 <div class="row">
 
+
     <aside class="container-menu col-3">
         <h1 class="btn-almacen">
             <a asp-controller="Almacenes" asp-action="Index">Almacenes</a>
@@ -15,7 +16,7 @@
         <h1>
             <a href="#" class="btn-busqueda">Busquedas frecuentes</a>
         </h1>
-        <hr/>
+        <hr />
 
         <ul class="menu">
             <ul class="guardados">
@@ -42,40 +43,41 @@
             </div>
         </div>
         <div class="row productosMuestra">
-            @foreach (Localizacion localizacion in Model)
+            @foreach (Producto producto in Model)
             {
                 <div class="col-2">
 
                     <div class="card">
 
-                <img class="card-img-top" style="border-radius:10px" src=@Url.Content(producto.Imagen)>
-               
-                <div class="card-body">
-                    <h4 class="card-title">Nombre=@producto.Nombre</h4>
-                    @if (producto.Localizaciones.Count != 0)
-                    {
-                        @foreach (Localizacion localizacion in producto.Localizaciones)
-                        {
-                            <h4 class="card-title">localizacion=@localizacion.Fila.Nombre </h4>
+                        <img class="card-img-top" style="border-radius:10px" src=@Url.Content(producto.Imagen)>
 
-                        }
-                    }
-                    else
-                    {
-                        <a asp-controller="Localizaciones" asp-action="Create">Insertar Localizacion</a>
-                    }
+                        <div class="card-body">
+                            <h4 class="card-title">Nombre=@producto.Nombre</h4>
+                            @if (producto.Localizaciones.Count != 0)
+                            {
+                                @foreach (Localizacion localizacion in producto.Localizaciones)
+                                {
+                                    <h4 class="card-title">localizacion=@localizacion.Fila.Nombre </h4>
 
+                                }
+                            }
+                            else
+                            {
+                                <a asp-controller="Localizaciones" asp-action="Create">Insertar Localizacion</a>
+                            }
+
+                        </div>
+                        <div>
+
+                            <a asp-action="Edit" asp-route-id="@producto.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@producto.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@producto.Id">Delete</a>
+
+                        </div>
+                    </div>
                 </div>
-                <div>
-
-                    <a asp-action="Edit" asp-route-id="@producto.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@producto.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@producto.Id">Delete</a>
-
-                </div>
-            </div>
+            }
         </div>
-    }
+    </div>
 </div>
-
 
