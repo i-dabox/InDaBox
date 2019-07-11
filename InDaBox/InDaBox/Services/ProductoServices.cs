@@ -74,35 +74,6 @@ namespace InDaBox.Services
             }
         }
 
-      
-        //async Task<List<ProductoLocacionVM>> IProducto.ProductoLocacion()
-        //{
-        //    List<Producto> productos = await _context.Producto.Where(x => x.Borrado != true).ToListAsync();
-        //    List<ProductoLocacionVM> productoLocacionVMsList = new List<ProductoLocacionVM>();
-        //    foreach (Producto producto in productos)
-        //    {
-        //        List<Localizacion> localizaciones = await _context.Localizacion.Include(x => x.Producto).Where(x => x.Producto.Nombre == producto.Nombre).ToListAsync();
-        //        ProductoLocacionVM productoLocacionVM = new ProductoLocacionVM()
-        //        {
-        //            Localizaciones = localizaciones,
-        //            Productos = producto
-        //        };
-        //        productoLocacionVMsList.Add(productoLocacionVM);
-        //    }
-        //    return productoLocacionVMsList;
-        //}
-
-        //async  Task<List<ProductoLocacionVM>> IProducto.ProductoLocacion()
-        //{
-        //    //List<Producto> productos = new List<Producto>();
-        //    //productos = await _context.Producto.Where(x => x.Borrado != true).ToListAsync();
-
-        //    //List<Localizacion> localizaciones = new List<Localizacion>();
-        //    //localizaciones = await _context.Localizacion.Include(x =>x.Producto).ToListAsync();
-        //    List<ProductoLocacionVM> ProductoLocaciones = new List<ProductoLocacionVM>();
-        //    ProductoLocaciones = await _context.Localizacion productoLocacions;
-
-
         public async Task<List<Producto>> ProductoLocacion()
         {
            return await _context.Producto.Include(x=>x.Localizaciones).ToListAsync();           
