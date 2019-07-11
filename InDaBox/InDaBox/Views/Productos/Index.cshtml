@@ -1,4 +1,4 @@
-﻿@model IEnumerable<InDaBox.Models.Localizacion>
+﻿@model IEnumerable<InDaBox.Models.Producto>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,29 +12,39 @@
 
 
 <div class="row">
-    @foreach (Localizacion localizacion in Model)
+    @foreach (Producto producto in Model)
     {
         <div class="col-md-3">
             <div class="card " @*style="width:300px; margin-bottom:10px" *@>
 
-                <img class="card-img-top" style="border-radius:10px" src=@Url.Content(localizacion.Producto.Imagen)>
-
+                <img class="card-img-top" style="border-radius:10px" src=@Url.Content(producto.Imagen)>
+               
                 <div class="card-body">
-                    <h4 class="card-title">Nombre=@localizacion.Producto.Nombre</h4>
-                    <h4 class="card-title">localizacion=@localizacion.Fila.Nombre </h4>
+                    <h4 class="card-title">Nombre=@producto.Nombre</h4>
+                    @if (producto.Localizaciones.Count != 0)
+                    {
+                        @foreach (Localizacion localizacion in producto.Localizaciones)
+                        {
+                            <h4 class="card-title">localizacion=@localizacion.Fila.Nombre </h4>
+
+                        }
+                    }
+                    else
+                    {
+                        <a asp-controller="Localizaciones" asp-action="Create">Insertar Localizacion</a>
+                    }
 
                 </div>
                 <div>
 
-                    <a asp-action="Edit" asp-route-id="@localizacion.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@localizacion.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@localizacion.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@producto.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@producto.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@producto.Id">Delete</a>
+
                 </div>
             </div>
         </div>
     }
-
-
 </div>
 
 

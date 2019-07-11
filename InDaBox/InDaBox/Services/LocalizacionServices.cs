@@ -42,20 +42,20 @@ namespace InDaBox.Services
             {
                 List<Localizacion> localizaciones = await _context.Localizacion.Include(fila => fila.Fila).Include(producto => producto.Producto).Where(borr => borr.Producto.Borrado != true).ToListAsync();
                 return localizaciones;
-                    //await _context.Localizacion.Where(loc => loc.Producto.Borrado != true).ToListAsync();
+                //await _context.Localizacion.Where(loc => loc.Producto.Borrado != true).ToListAsync();
             }
         }
     }
 }
-        
-
-
-  
 
 
 
 
-   
-    
+
+
+
+
+
+
 
 

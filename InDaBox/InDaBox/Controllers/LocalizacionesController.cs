@@ -46,11 +46,11 @@ namespace InDaBox.Controllers
             return View(localizacion);
         }
 
-        // GET: Localizaciones/Create
+        // GET: Loc-alizaciones/Create
         public IActionResult Create()
         {
             ViewData["FilaId"] = new SelectList(_context.Fila, "Id", "Nombre");
-            ViewData["ProductoId"] = new SelectList(_context.Producto.Where(prod=>prod.Borrado == false) , "Id", "Nombre");
+            ViewData["ProductoId"] = new SelectList(_context.Producto.Where(prod=>prod.Borrado == false).Where(loc=>loc.Localizaciones.Count==0) , "Id", "Nombre");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace InDaBox.Controllers
             {
                 _context.Add(localizacion);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Productos");
             }
             ViewData["FilaId"] = new SelectList(_context.Fila, "Id", "Nombre", localizacion.FilaId);
             ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Nombre", localizacion.ProductoId);

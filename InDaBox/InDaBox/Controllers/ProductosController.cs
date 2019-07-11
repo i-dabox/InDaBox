@@ -18,7 +18,7 @@ namespace InDaBox.Controllers
         private readonly ILocalizacion _localizacionServices;
 
 
-        public ProductosController(ApplicationDbContext context, IProducto productoServices,ILocalizacion localizacionServices)
+        public ProductosController(ApplicationDbContext context, IProducto productoServices, ILocalizacion localizacionServices)
         {
             _context = context;
             _productoServices = productoServices;
@@ -28,34 +28,38 @@ namespace InDaBox.Controllers
         // GET: Productos
         public async Task<IActionResult> Index(string busqueda)
         {
+            List<Producto> Productos = await _productoServices.BusquedaProducto(busqueda);
+            return View(Productos);
 
-            List<Localizacion> localizaciones = await _localizacionServices.BusquedaLocalizacion(busqueda);
-            return View(localizaciones);
+            //List<Localizacion> localizaciones = await _localizacionServices.BusquedaLocalizacion(busqueda);
+            //return View(localizaciones);
+
         }
+
 
         // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
             {
-                return NotFound();
+                if (id == null)
+                {
+                    return NotFound();
+                }
+
+                var producto = await _context.Producto
+                    .FirstOrDefaultAsync(m => m.Id == id);
+                if (producto == null)
+                {
+                    return NotFound();
+                }
+
+                return View(producto);
             }
 
-            var producto = await _context.Producto
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (producto == null)
+            // GET: Productos/Create
+            public IActionResult Create()
             {
-                return NotFound();
+                return View();
             }
-
-            return View(producto);
-        }
-
-        // GET: Productos/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
 
         // POST: Productos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -156,7 +160,7 @@ namespace InDaBox.Controllers
 
             return RedirectToAction("Index");
         }
-        
+
         // GET: Productos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         { //TODO preguntar si es necesario que el borrado logico suponga un valor de cantidad = 0 o no es necesario.
@@ -196,3 +200,4 @@ namespace InDaBox.Controllers
         }
     }
 }
+
