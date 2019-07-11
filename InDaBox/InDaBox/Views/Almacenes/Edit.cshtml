@@ -56,40 +56,39 @@
             <div id="container">
                 <button class="Anadir">Añadir Pasillo</button>
                 @{
-                    for (int p = 0; p < Model.Pasillos.Count; p++)
+                    foreach (Pasillo pasillo in Model.Pasillos)
                     {
-                        <div class="pasillo" id="@Model.Pasillos[p].Id">
+                        <div class="pasillo" id="@pasillo.Id">
                             @{
                                 <br />
-                                <button id="@Model.Pasillos[p].Id" class="Borrar">Borrar Pasillo</button>
+                                <button id="@pasillo.Id" class="Borrar">Borrar Pasillo</button>
                                 <div class="form-group">
-                                    <label asp-for="@Model.Pasillos[p].Nombre" class="control-label">Pasillo</label>
-                                    <input asp-for="@Model.Pasillos[p].Nombre" value="@Model.Pasillos[p].Nombre" class="form-control" />
-                                    <span asp-validation-for="@Model.Pasillos[p].Nombre" class="text-danger"></span>
+                                    <label asp-for="@pasillo.Nombre" class="control-label">Pasillo</label>
+                                    <input asp-for="@pasillo.Nombre" value="@pasillo.Nombre" class="form-control" />
+                                    <span asp-validation-for="@pasillo.Nombre" class="text-danger"></span>
                                 </div>
 
-                                for (int s = 0; s < Model.Pasillos[s].Secciones.Count; s++)
+                                @foreach(Seccion seccion in pasillo.Secciones)
                                 {
                                     <div class="form-group">
-                                        <label asp-for="@Model.Pasillos[p].Secciones[s].Nombre" class="control-label">Seccion</label>
-                                        <input asp-for="@Model.Pasillos[p].Secciones[s].Nombre" class="form-control" />
-                                        <span asp-validation-for="@Model.Pasillos[p].Secciones[s].Nombre" class="text-danger"></span>
+                                        <label asp-for="@seccion.Nombre" class="control-label">Seccion</label>
+                                        <input asp-for="@seccion.Nombre" class="form-control" />
+                                        <span asp-validation-for="@seccion.Nombre" class="text-danger"></span>
                                     </div>
 
-                                    for (int c = 0; c < Model.Pasillos[p].Secciones[s].Columnas.Count; c++)
+                                    @foreach(Columna columna in seccion.Columnas)
                                     {
                                         <div class="form-group">
-                                            <label asp-for="@Model.Pasillos[p].Secciones[s].Columnas[c].Nombre" class="control-label">Columna</label>
-                                            <input asp-for="@Model.Pasillos[p].Secciones[s].Columnas[c].Nombre" class="form-control" />
-                                            <span asp-validation-for="@Model.Pasillos[p].Secciones[s].Columnas[c].Nombre" class="text-danger"></span>
+                                            <label asp-for="@columna.Nombre" class="control-label">Columna</label>
+                                            <input asp-for="@columna.Nombre" class="form-control" />
+                                            <span asp-validation-for="@columna.Nombre" class="text-danger"></span>
                                         </div>
-
-                                        for (int f = 0; f < Model.Pasillos[p].Secciones[s].Columnas[c].Filas.Count; f++)
+                                        @foreach(Fila fila in columna.Filas)
                                         {
                                             <div class="form-group">
-                                                <label asp-for="@Model.Pasillos[p].Secciones[s].Columnas[c].Filas[f].Nombre" class="control-label">Fila</label>
-                                                <input asp-for="@Model.Pasillos[p].Secciones[s].Columnas[c].Filas[f].Nombre" class="form-control" />
-                                                <span asp-validation-for="@Model.Pasillos[p].Secciones[s].Columnas[c].Filas[f].Nombre" class="text-danger"></span>
+                                                <label asp-for="@fila.Nombre" class="control-label">Fila</label>
+                                                <input asp-for="@fila.Nombre" class="form-control" />
+                                                <span asp-validation-for="@fila.Nombre" class="text-danger"></span>
                                             </div>
                                         }
                                     }
