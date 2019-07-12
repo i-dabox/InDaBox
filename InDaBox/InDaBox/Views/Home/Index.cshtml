@@ -1,3 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout ="_LayoutHome";
 }
+
+
+
+
+<div class="container-fluid">
+    <div class="row bckpic">
+        <img class="img_cascos" src="~/img/cascos.png" />
+        <div class="col-6 bkgc1 pro">
+            <a class="productos" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
+        </div>
+        <div class="col-6 bkgc2 alm">
+            <a class="almacenes" asp-area="" asp-controller="Almacenes" asp-action="Index">Almacenes</a>
+        </div>
+    </div>
+</div>
+
+

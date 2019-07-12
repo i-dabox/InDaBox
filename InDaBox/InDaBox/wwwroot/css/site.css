@@ -1,10 +1,11 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 /*Estilo contenedor Log In*/
@@ -54,11 +55,7 @@ html {
   min-height: 100%;
 }
 
-body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
-    
-}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -88,17 +85,18 @@ body {
     font-weight: 700;
     font-size: 45pt;
     color: #ffffff;
-    height: 100%;
     margin-left: 10%;
     margin-top: 20%;
+    z-index: 2;
 }
 .almacenes {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 45pt;
     color: #272a39;
-    height: 100%;   
+    height: 100%;
     margin-right: 10%;
+    z-index: 2;
 }
 .container-fluid mio {
     width: 100%;
@@ -127,11 +125,8 @@ body {
     height: 80vh;
 }
 
-.bkgc1,
-.bkgc2{
-    height:100%;
-   
-}
+
+
 .pro {
     display: flex;
     align-items: flex-start;

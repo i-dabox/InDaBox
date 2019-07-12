@@ -16,13 +16,15 @@ namespace InDaBox.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IProducto _productoServices;
         private readonly ILocalizacion _localizacionServices;
+        private readonly IFiltrosComunes _filtrosComunes;
 
 
-        public ProductosController(ApplicationDbContext context, IProducto productoServices, ILocalizacion localizacionServices)
+        public ProductosController(ApplicationDbContext context, IProducto productoServices, ILocalizacion localizacionServices, IFiltrosComunes filtrosComunes)
         {
             _context = context;
             _productoServices = productoServices;
             _localizacionServices = localizacionServices;
+            _filtrosComunes = filtrosComunes;
         }
 
         // GET: Productos
