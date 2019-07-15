@@ -1,0 +1,79 @@
+﻿body {
+}
+.centrar {
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+.row {   
+    margin: 0;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #272a39;    
+}
+
+.row h4 i {
+    color: #272a39;
+    padding-right: 8px;
+}
+.row h4 {
+    color: #272a39;
+    padding-right: 8px;
+    font-weight: 700;
+    font-size:20pt;
+}
+.tamaño {
+    width: 300px;
+}
+#container {
+    width: 100%;
+}
+.linea {
+    border: 2px solid #272a39;
+    border-radius: 10px;
+    background: #272a39;
+    width: 100%;
+
+    padding-top: 0;
+    margin-top: -5px;
+}
+
+
+.textoTitulo {
+    margin-top: 18px;
+    color: #272a39;
+}
+
+/*-------Botones e iconos-------*/
+.btnanadir,
+.btnBorrar {
+    border: solid;
+    border-radius: 22px;
+    border-color: #272a39;
+    background-color: #fff;
+    margin-left: 40%;
+    margin-top: 18px;
+    padding: 10px 10px;
+    width: 20%;
+    font-weight: 600;
+}
+.icono,
+.plus {
+    color: #272a39;
+    padding-right: 8px;
+}
+.flecha-abierta {
+    transform: rotate(90deg);
+}
+.tiempo-giro {
+    transition: all 0.5s;
+}
+.flecha-derecha {
+    background-image: url('../img/arrow-point-to-right.svg');
+    width:5px;
+}
+.flecha-abajo {
+    background-image: url('../img/arrow-down-sign-to-navigate.svg');
+    width: 5px;
+}

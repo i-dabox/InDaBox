@@ -182,3 +182,7 @@ function stringSecciones(idElementoPasillo, cabeceraPasillo, pasillo) {
             </div>
             <div id="insertarSeccion${pasillo}"></div>`;
 }
+
+$('.tiempo-giro').click(function () {
+    $(this).toggleClass('flecha-abierta');
+});
