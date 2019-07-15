@@ -7,6 +7,8 @@
 //seccion de elementos
 $('.Borrar').click(eventoBorrarPasillo);
 $('.Anadir').click(eventoMostrarCamposAnadirPasillo);
+$('.BotonEditar').click(eventoMandarIdAModalEditar);
+$('.BotonBorrar').click(eventoMandarIdAModalBorrar);
 
 //Eventos
 function eventoBorrarPasillo(event) {
@@ -14,12 +16,21 @@ function eventoBorrarPasillo(event) {
     let id = $(this).attr('id');
     borrarPasillo(id);
 }
-
 function eventoMostrarCamposAnadirPasillo(event) {
     event.preventDefault();
     mostrarCamposAnadirPasillo();
 }
 
+function eventoMandarIdAModalEditar(event) {
+    event.preventDefault();
+    let id = $(this).attr('id');
+    confirm(id);
+}
+function eventoMandarIdAModalBorrar(event) {
+    event.preventDefault();
+    let id = $(this).attr('id');
+    borrarProducto(id);
+}
 
 $('form input').keydown(function (e) {
     if (e.keyCode === 13) {
@@ -32,6 +43,9 @@ $('#numeroDePasillo').change(mostrarPasillos);
 $('#nombrePasillo').change(mostrarPasillos);
 
 //seccion de metodos
+function borrarProducto(id) {
+    $('modalBorrarInput').attr('asp-for=', 'Id');
+}
 function borrarPasillo(id) {
     $('#' + id).remove();
 }

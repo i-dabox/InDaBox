@@ -215,8 +215,8 @@ html {
 .columna {
     width: 80%;
     margin: 0 auto;
-}
-    height: 100%;
+
+    /*height: 100%;*/
 }
  /*----Log in------*/
 

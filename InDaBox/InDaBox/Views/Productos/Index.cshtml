@@ -52,9 +52,9 @@
                 </div>
                 <div>
                     <!-- Button trigger modal -->
-                    <a class="btn " data-toggle="modal" data-target="#edit">Editar</a>
+                    <a class="btn BotonEditar" id="@producto.Id" data-toggle="modal" data-target="#edit">Editar</a>
                     @*<a asp-action="Edit" asp-route-id="@producto.Id">Edit</a>*@ |
-                    <a class="btn" data-toggle="modal" data-target="#edit">Borrar</a>
+                    <a class="btn BotonBorrar" id="@producto.Id" data-toggle="modal" data-target="#delete">Borrar</a>
                     @*<a asp-action="Details" asp-route-id="@producto.Id">Details</a>*@ |
                     <a asp-action="Delete" asp-route-id="@producto.Id">Delete</a>
 
@@ -70,13 +70,55 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                @*content*@
+
+                @*<form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <label asp-for="Nombre" class="control-label">Nombre</label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Descripcion" class="control-label">Descripción</label>
+                            <input asp-for="Descripcion" class="form-control" />
+                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Imagen" class="control-label">Imagen</label>
+                            <input asp-for="Imagen" class="form-control" />
+                            <span asp-validation-for="Imagen" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Caducidad" class="control-label">Caducidad</label>
+                            <input asp-for="Caducidad" class="form-control" />
+                            <span asp-validation-for="Caducidad" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Cantidad" class="control-label">Cantidad</label>
+                            <input asp-for="Cantidad" class="form-control" />
+                            <span asp-validation-for="Cantidad" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Borrado" /> @Html.DisplayNameFor(model => model.Borrado)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                        </div>
+                    </form>*@
+
+                @*contenido*@
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -87,17 +129,21 @@
 </div>
 
 <!-- Modal delete -->
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Borrar</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <form asp-action="Delete">
+                    <input type="hidden" id="modalBorrarInput"  />
+                    <input type="submit" value="Borrado" class="btn btn-danger" /> |
+                    <a asp-action="Index">Volver</a>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
