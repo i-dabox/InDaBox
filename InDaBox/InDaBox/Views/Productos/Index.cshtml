@@ -2,82 +2,107 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_LayoutProducto";
 }
-<link rel="stylesheet" href="~/css/menuLateral.css">
-
-<div class="row">
-
-
-    <aside class="container-menu col-3">
-        <h1 class="btn-almacen">
-            <a asp-controller="Almacenes" asp-action="Index">Almacenes</a>
-        </h1>
-        <h1>
-            <a href="#" class="btn-busqueda">Busquedas frecuentes</a>
-        </h1>
-        <hr />
-
-        <ul class="menu">
-            <ul class="guardados">
-                <li><a href="#">Item 1 </a></li>
-                <li><a href="#">Item 2 </a></li>
-                <li><a href="#">Item 3 </a></li>
-                <li><a href="#">Item 4 </a></li>
-                <li><a href="#">Item 5 </a></li>
-                <li><a href="#">Item 6 </a></li>
-                <li><a href="#">Item 7 </a></li>
-                <li><a href="#">Item 8 </a></li>
-                <li><a href="#">Item 9 </a></li>
-                <li><a href="#">Item 10 </a></li>
-            </ul>
+@section navBtn {
+    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+    <a class="nav-link text-white" asp-controller="Almacenes" asp-action="Index">Almacenes</a>
+}
+@section SideMenu {
+    <ul class="menu">
+        <ul class="guardados">
+            <li><a class="anclaLateral" href="#">Item 1 </a></li>
+            <li><a class="anclaLateral" href="#">Item 2 </a></li>
+            <li><a class="anclaLateral" href="#">Item 3 </a></li>
+            <li><a class="anclaLateral" href="#">Item 4 </a></li>
+            <li><a class="anclaLateral" href="#">Item 5 </a></li>
+            <li><a class="anclaLateral" href="#">Item 6 </a></li>
+            <li><a class="anclaLateral" href="#">Item 7 </a></li>
+            <li><a class="anclaLateral" href="#">Item 8 </a></li>
+            <li><a class="anclaLateral" href="#">Item 9 </a></li>
+            <li><a class="anclaLateral" href="#">Item 10 </a></li>
         </ul>
-        <p class="createNew">
-            <a asp-action="Create"><i class="icono izquierda fas fa-plus"></i>Añadir producto</a>
-        </p>
-    </aside>
-    <div class="col">
-        <div class="row">
-            <div class="titulo">
-                <h1>Productos</h1>
+    </ul>
+    <p class="createNew">
+        <a asp-action="Create" class="anclaLateral"><i class="icono anclaLateral fas fa-plus"></i>Añadir producto</a>
+    </p>
+}
+
+<div class="titulo">
+    <h1>Productos</h1>
+</div>
+<div class="row productosMuestra">
+    @foreach (Producto producto in Model)
+    {
+        <div class="col-3 pb-4">
+            <div class="card">
+                <img class="card-img-top" src=@Url.Content(producto.Imagen)>
+                <div class="card-body">
+                    <h4 class="card-title">Nombre=@producto.Nombre</h4>
+                    @if (producto.Localizaciones.Count != 0)
+                    {
+                        @foreach (Localizacion localizacion in producto.Localizaciones)
+                        {
+                            <h4 class="card-title">localizacion=@localizacion.Fila.Nombre </h4>
+                        }
+                    }
+                    else
+                    {
+                        <a asp-controller="Localizaciones" asp-action="Create">Insertar Localizacion</a>
+                    }
+                </div>
+                <div>
+                    <!-- Button trigger modal -->
+                    <a class="btn " data-toggle="modal" data-target="#edit">Editar</a>
+                    @*<a asp-action="Edit" asp-route-id="@producto.Id">Edit</a>*@ |
+                    <a class="btn" data-toggle="modal" data-target="#edit">Borrar</a>
+                    @*<a asp-action="Details" asp-route-id="@producto.Id">Details</a>*@ |
+                    <a asp-action="Delete" asp-route-id="@producto.Id">Delete</a>
+
+                </div>
             </div>
         </div>
-        <div class="row productosMuestra">
-            @foreach (Producto producto in Model)
-            {
-                <div class="col-2">
+    }
+</div>
 
-                    <div class="card">
 
-                        <img class="card-img-top" style="border-radius:10px" src=@Url.Content(producto.Imagen)>
-
-                        <div class="card-body">
-                            <h4 class="card-title">Nombre=@producto.Nombre</h4>
-                            @if (producto.Localizaciones.Count != 0)
-                            {
-                                @foreach (Localizacion localizacion in producto.Localizaciones)
-                                {
-                                    <h4 class="card-title">localizacion=@localizacion.Fila.Nombre </h4>
-
-                                }
-                            }
-                            else
-                            {
-                                <a asp-controller="Localizaciones" asp-action="Create">Insertar Localizacion</a>
-                            }
-
-                        </div>
-                        <div>
-
-                            <a asp-action="Edit" asp-route-id="@producto.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@producto.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@producto.Id">Delete</a>
-
-                        </div>
-                    </div>
-                </div>
-            }
+<!-- Modal -->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
     </div>
 </div>
 
+<!-- Modal delete -->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

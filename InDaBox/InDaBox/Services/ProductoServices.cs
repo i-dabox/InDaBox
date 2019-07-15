@@ -47,7 +47,7 @@ namespace InDaBox.Services
         {
             if (busqueda != null)
             {
-                List<Producto> productos = await _context.Producto.Where(producto => producto.Borrado != true).Include(x=>x.Localizaciones).ThenInclude(a => a.Fila).ToListAsync();
+                List<Producto> productos = await _context.Producto.Where(producto => producto.Borrado != true).Include(x => x.Localizaciones).ThenInclude(a => a.Fila).ToListAsync();
 
                 if (productos.Where(x => x.Nombre.ToLower().Contains(busqueda.ToLower())).ToList().Count > 0)
                 {
@@ -68,13 +68,13 @@ namespace InDaBox.Services
             else
             {
 
-                return await _context.Producto.Where(producto => producto.Borrado != true).Include(loc=>loc.Localizaciones).ThenInclude(a=>a.Fila).ToListAsync();
+                return await _context.Producto.Where(producto => producto.Borrado != true).Include(loc => loc.Localizaciones).ThenInclude(a => a.Fila).ToListAsync();
             }
         }
 
         public async Task<List<Producto>> ProductoLocacion()
         {
-           return await _context.Producto.Include(x=>x.Localizaciones).ToListAsync();           
+            return await _context.Producto.Include(x => x.Localizaciones).ToListAsync();
 
         }
     }

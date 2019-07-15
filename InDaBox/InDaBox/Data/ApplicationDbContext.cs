@@ -20,5 +20,6 @@ namespace InDaBox.Data
         public DbSet<InDaBox.Models.Fila> Fila { get; set; }
         public DbSet<InDaBox.Models.Producto> Producto { get; set; }
         public DbSet<InDaBox.Models.Localizacion> Localizacion { get; set; }
+        public DbSet<InDaBox.Models.FiltrosComunes> FiltrosComunes { get; set; }
     }
 }

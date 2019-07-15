@@ -1,18 +1,24 @@
 ﻿body {
     font-family: 'Montserrat', sans-serif;
-    font-weight:500;
+    font-weight: 500;
+    /*color: #fff;*/
+    /*line-height:18px;*/
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.anclaLateral {
     color: #fff;
-    /*line-height:18px;*/ 
 }
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-a{
-    text-decoration:none;
-    color:#fff;
-}
+
 hr {
     border: 10px solid #fff;
     background: #fff;
@@ -22,19 +28,18 @@ hr {
     height: 5px;
     margin-left: 40px;
 }
+
 .container-menu {
     background-color: #272a39;
-    height: 100%;
+    height: 100vh;
     /*min-width: 300px;*/
     /*margin:50px;*/
     /*display:inline-block;*/ /*preguntar*/
     line-height: 30px;
-    /*position: fixed;*/
     flex: 0 0 450px;
-    /*top: 64px;*/
-    left: 0;
     color: #fff;
 }
+
 .btn-busqueda {
     font-size: 28pt;
     color: #fff;
@@ -52,40 +57,46 @@ hr {
     margin-top: 200px;
     margin-left: 40px;
 }
-.btn-almacen:hover{
-    font-size: 28pt;
-    color: purple;
-    font-weight: 600;
-    margin-left: 40px;
-}
+
+    .btn-almacen:hover {
+        font-size: 28pt;
+        color: purple;
+        font-weight: 600;
+        margin-left: 40px;
+    }
 
 .container-menu .menu {
     width: 100%;
     padding-left: 20px;
     list-style: none;
-    padding-left:40px;
-    margin-top:24px;
+    padding-left: 40px;
+    margin-top: 24px;
 }
-.container-menu .menu i{
-    color: #fff;
-}
+
+    .container-menu .menu i {
+        color: #fff;
+    }
+
 .container-menu ul {
     list-style: none;
 }
+
 .contenedor-menu .menu li a {
     color: #fff;
     display: block;
     padding: 15px 20px;
-    
 }
-p{
+
+p {
     color: #fff;
     margin-left: 40px;
-    font-size:20px;
+    font-size: 20px;
 }
+
 .icono {
-    padding-right:7px;
+    padding-right: 7px;
 }
+
 .createNew {
     border: solid;
     border-radius: 20px;
@@ -95,14 +106,14 @@ p{
     width: 75%;
     margin-top: 37px;
 }
-.titulo h1{
-    font-family:'Montserrat', sans-serif;
+
+.titulo h1 {
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: 50pt;
     color: #272a39;
-    margin-top: 33px;
-    margin-left: 438px
 }
+
 .guardados {
     margin-left: 25px;
 }

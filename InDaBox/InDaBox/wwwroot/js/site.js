@@ -73,6 +73,10 @@ function anadirPasillo(elemento, nombrePasillo, pasillo) {
     anadirNombrePasilloHidden(elemento, nombrePasillo, pasillo);
     anadirCamposSeccionesAPasillo(elemento, nombrePasillo, pasillo);
 
+    function anadirNombrePasilloHidden(elemento, nombrePasillo, pasillo) {
+        $(elemento)
+            .append(`<input type="hidden" value="${nombrePasillo}_${pasillo + 1}" name="Pasillos[${pasillo}].Nombre" />`);
+    }
     function anadirCamposSeccionesAPasillo(elemento, nombrePasillo, pasillo) {
         let cabeceraPasillo = `${nombrePasillo} ${pasillo + 1}`;
         let idElementoPasillo = `pasilloUnico${pasillo}`;
@@ -88,11 +92,6 @@ function anadirPasillo(elemento, nombrePasillo, pasillo) {
         $(`#Pasillos_${pasillo}`).change(function () {
             mostrarSecciones(pasillo);
         });
-    }
-
-    function anadirNombrePasilloHidden(elemento, nombrePasillo, pasillo) {
-        $(elemento)
-            .append(`<input type="hidden" value="${nombrePasillo}_${pasillo + 1}" name="Pasillos[${pasillo}].Nombre" />`);
     }
 }
 function mostrarSecciones(pasillo) {

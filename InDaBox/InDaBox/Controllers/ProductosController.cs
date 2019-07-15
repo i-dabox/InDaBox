@@ -16,18 +16,21 @@ namespace InDaBox.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IProducto _productoServices;
         private readonly ILocalizacion _localizacionServices;
+        private readonly IFiltrosComunes _filtrosComunes;
 
 
-        public ProductosController(ApplicationDbContext context, IProducto productoServices, ILocalizacion localizacionServices)
+        public ProductosController(ApplicationDbContext context, IProducto productoServices, ILocalizacion localizacionServices, IFiltrosComunes filtrosComunes)
         {
             _context = context;
             _productoServices = productoServices;
             _localizacionServices = localizacionServices;
+            _filtrosComunes = filtrosComunes;
         }
 
         // GET: Productos
         public async Task<IActionResult> Index(string busqueda)
         {
+            
             List<Producto> Productos = await _productoServices.BusquedaProducto(busqueda);
             return View(Productos);
 
@@ -92,8 +95,9 @@ namespace InDaBox.Controllers
             {
                 return NotFound();
             }
-
-            var producto = await _context.Producto.FindAsync(id);
+            ViewData["localizaciones"] =await _context.Fila.ToListAsync();
+            ViewData["FilaId"] = _context.Producto.Include(x => x.Localizaciones).ThenInclude(x => x.Fila).Where(x => x.Id == id).ToListAsync();
+            var producto = await _context.Producto.Include(x=>x.Localizaciones).ThenInclude(x=>x.Fila).Where(x=>x.Id==id).FirstOrDefaultAsync();
             if (producto == null)
             {
                 return NotFound();
@@ -106,7 +110,7 @@ namespace InDaBox.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Imagen,Caducidad,Cantidad,Borrado")] Producto producto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Imagen,Caducidad,Cantidad,Borrado,")] Producto producto)
         {
             if (id != producto.Id)
             {
