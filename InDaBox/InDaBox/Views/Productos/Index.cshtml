@@ -33,12 +33,9 @@
 <div class="row productosMuestra">
     @foreach (Producto producto in Model)
     {
-        <div class="col-2">
-
+        <div class="col-3 pb-4">
             <div class="card">
-
-                <img class="card-img-top" style="border-radius:10px" src=@Url.Content(producto.Imagen)>
-
+                <img class="card-img-top" src=@Url.Content(producto.Imagen)>
                 <div class="card-body">
                     <h4 class="card-title">Nombre=@producto.Nombre</h4>
                     @if (producto.Localizaciones.Count != 0)
@@ -46,14 +43,12 @@
                         @foreach (Localizacion localizacion in producto.Localizaciones)
                         {
                             <h4 class="card-title">localizacion=@localizacion.Fila.Nombre </h4>
-
                         }
                     }
                     else
                     {
                         <a asp-controller="Localizaciones" asp-action="Create">Insertar Localizacion</a>
                     }
-
                 </div>
                 <div>
                     <!-- Button trigger modal -->
