@@ -3,104 +3,91 @@
 @{
     ViewData["Title"] = "Create";
 }
+<link rel="stylesheet" href="~/css/Formulario.css">
 
 <h4>Almacén</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4" id="crearAlmacen">
-        <form asp-action="Create" id="NuevoAlmacen" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="setting-distancia">
 
-            <div>
-                <div class="flecha almacen">
-                    <h1>Almacén</h1> <!--icono-->
-                    <hr>
-                </div>
-                <div id="almacen">
-                    <div class="form-group">
-                        <label asp-for="Nombre" class="control-label" placeholder="Nombre"> Nombre</label>
-                        <input asp-for="Nombre" class="form-control" />
-                        <span asp-validation-for="Nombre" class="text-danger"></span>
-                    </div>
+    <div class="row">
 
-                    <div class="form-group">
-                        <label asp-for="Direccion" class="control-label">Dirección</label>
-                        <input asp-for="Direccion" class="form-control" />
-                        <span asp-validation-for="Direccion" class="text-danger"></span>
-                    </div>
+        <div class="centrar">
 
-                    <div class="form-group">
-                        <label asp-for="CodigoPostal" class="control-label">Código postal</label>
-                        <input asp-for="CodigoPostal" class="form-control" />
-                        <span asp-validation-for="CodigoPostal" class="text-danger"></span>
-                    </div>
-                </div>
-                
+            <div class="col-6" id="crearAlmacen">
+                <form asp-action="Create" id="NuevoAlmacen" method="post" class="row">
 
-                <div class="form-group">
-                    <label asp-for="Poblacion" class="control-label">Población</label>
-                    <input asp-for="Poblacion" class="form-control"/>
-                    <span asp-validation-for="Poblacion" class="text-danger"></span>
-
-                    <div id="pasillo">
-                        <div class="flecha">
-                            <h1 >Pasillo</h1> <!--icono-->
-                            <hr>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="almacen col-12">
+                            <h4 class="col-12 activar-flecha" data-toggle="collapse" href="#a-collapse-almacen"><i class="icono plus fas fa-angle-right tiempo-giro flecha-abierta"></i>Almacen: <span class="color-nombre">Nombre</span></h4>
+                            <hr class="linea mx-auto" />
                         </div>
-                        <div>
-                            <label for="numeroDePasillo" class="control-label">Numero de pasillos</label>  
-                            <input id="numeroDePasillo" class="form-control"/>
-                        </div>
-                        <div>
-                            
-                            <div class="form-group">
-                                <label asp-for="Pasillos[0].Nombre" class="control-label">Nombre de pasillo</label> <!-- cuidado no es nombre de almacen -->
-                                <input asp-for="Pasillos[0].Nombre" class="form-control" id="nombrePasillo"/>
-                                <span asp-validation-for="Pasillos[0].Nombre" class="text-danger"></span>
+                        <div id="almacen">
+                            <div id="a-collapse-almacen" class="collapse show row">
+
+                                <div class="form-group tamaño mx-auto col-6 ajustar-padding">
+                                    <label asp-for="Nombre" class="control-label" placeholder="Nombre"> Nombre</label>
+                                    <input asp-for="Nombre" class="form-control" />
+                                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group tamaño col-6 ajustar-padding">
+                                    <label asp-for="Direccion" class="control-label">Dirección</label>
+                                    <input asp-for="Direccion" class="form-control" />
+                                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group tamaño col-6 ajustar-padding">
+                                    <label asp-for="CodigoPostal" class="control-label">Código postal</label>
+                                    <input asp-for="CodigoPostal" class="form-control" />
+                                    <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                                </div>
+                                <div class="form-group tamaño col-6 ajustar-padding">
+                                    <label asp-for="Poblacion" class="control-label">Población</label>
+                                    <input asp-for="Poblacion" class="form-control" />
+                                    <span asp-validation-for="Poblacion" class="text-danger"></span>
+                                </div>
                             </div>
+                        </div>
+                       
+                        <div class="form-group col-12 mx-auto textoTitulo">
+                            <div id="pasillo">
 
-                            <div class="form-group">
-                                <div id="insertarPasillo"></div>
-                                @*<div class="flecha">
-                                    <h1>Nombre pasillo</h1> <!--icono y el nombre que el usuario inserte-->
-                                    <hr>
+                                <div class="flecha col-12">
+                                    <h4 class=" activar-flecha" data-toggle="collapse" href="#a-collapse-configura-pasillo"><i class="icono plus fa fa-angle-right tiempo-giro flecha-abierta"></i><span class="color-nombre">Configuración de pasillos</span></h4>
+                                    <hr class="linea mx-auto" />
                                 </div>
-                                <div class="form-group">
-                                    <label id="NumeroDeSecciones" class="control-label">Numero de secciones</label>
-                                    <input id="NumeroDeSecciones" class="form-control" />
-                                </div>
-                                <div id="secciones">
-                                    <label asp-for="Pasillos[0].Secciones[0].NombreSeccion" class="control-label">Nombre de sección</label>
-                                    <input asp-for="Pasillos[0].Secciones[0].NombreSeccion" class="form-control" />
-                                    <span asp-validation-for="Pasillos[0].Secciones[0].NombreSeccion" class="text-danger"></span>
-
-                                    <div class="form-group seccion">
-                                        <div class="flecha">
-                                            <h1>Nombre seccion</h1> <!--icono-->
-                                            <hr>
-                                        </div>
-                                        <div class="form-group">
-                                            <label id="numeroDeColumnas" class="control-label">Numero de columnas</label> <!---TODO-->
-                                            <input id="numeroDeColumnas" class="form-control" />
-                                            <span id="numeroDeColumnas" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label id="numeroDeFilas" class="control-label">Numero de filas</label>
-                                            <input id="numeroDeFilas" class="form-control" />
-                                        </div>
+                                <div id="a-collapse-configura-pasillo" class="row">
+                                    <div class="form-group ajustar-padding col-6">
+                                        <label for="numeroDePasillo" class="control-label">Numero de pasillos</label>
+                                        <input id="numeroDePasillo" class="form-control"/>
                                     </div>
-                                </div>*@
+                                    <div class="form-group ajustar-padding col-6">
+                                        <label asp-for="Pasillos[0].Nombre" class="control-label">Nombre de pasillo</label>
+                                        <input asp-for="Pasillos[0].Nombre" class="form-control" id="nombrePasillo" />
+                                        <span asp-validation-for="Pasillos[0].Nombre" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div>
+
+                                    <div class="form-group">
+                                        <div id="insertarPasillo"></div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" id="botonCrear" />
-            </div>
-        </form>
-    </div>
+                       
 
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Crear" class="crear" id="botonCrear" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 

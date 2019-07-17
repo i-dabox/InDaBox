@@ -1,21 +1,41 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    Layout ="_LayoutHome";
+    Layout = "_LayoutHome";
 }
-
-
-
-
-<div class="container-fluid">
-    <div class="row bckpic">
-        <img class="img_cascos" src="~/img/cascos.png" />
-        <div class="col-6 bkgc1 pro">
-            <a class="productos" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
+    <link rel="stylesheet" href="~/css/Index.css">
+<body>
+    <section id="wrapper" class="skewed">
+        <div class="layer bottom">
+            <div class="content-wrap">
+                <div class="content-body">
+                    <a class="almacenes" asp-area="" asp-controller="Almacenes" asp-action="Index">Almacenes</a>
+                </div>
+                <img src="~/img/Recurso 1elipse1.svg" />
+            </div>
         </div>
-        <div class="col-6 bkgc2 alm">
-            <a class="almacenes" asp-area="" asp-controller="Almacenes" asp-action="Index">Almacenes</a>
+
+        <div class="layer top">
+            <div class="content-wrap">
+                <div class="content-body">
+                    <a class="productos" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
+                </div>
+                <img src="~/img/Recurso 2elipse2.svg" />
+            </div>
         </div>
-    </div>
-</div>
+
+        <div class="handle"></div>
+    </section>
+    <script src="~/js/site.js"></script>
+</body>
+
+
+
+
+
+
+
+
+
+
 
 

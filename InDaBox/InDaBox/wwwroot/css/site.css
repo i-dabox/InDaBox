@@ -202,22 +202,9 @@ html {
 }
 .card {
     box-shadow: 5px 12px 16px 0px rgba(0,0,0,0.34);
-}
-.pasillo {
-    width:90%;
-    margin:0 auto;
-}
-.seccion {
-    width: 90%;
-    margin: 0 auto;
-
-}
-.columna {
-    width: 80%;
-    margin: 0 auto;
-}
     height: 100%;
 }
+
  /*----Log in------*/
 
 .btn {

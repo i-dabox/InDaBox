@@ -68,6 +68,9 @@ function mostrarPasillos() {
     for (let pasillo = 0; pasillo < numeroPasillo; pasillo++) {
         anadirPasillo('#insertarPasillo', nombrePasillo, pasillo);
     }
+
+    $('.activar-flecha').off();
+    $('.activar-flecha').click(abrirCerrarFlecha);
 }
 function anadirPasillo(elemento, nombrePasillo, pasillo) {
     anadirNombrePasilloHidden(elemento, nombrePasillo, pasillo);
@@ -75,7 +78,7 @@ function anadirPasillo(elemento, nombrePasillo, pasillo) {
 
     function anadirNombrePasilloHidden(elemento, nombrePasillo, pasillo) {
         $(elemento)
-            .append(`<input type="hidden" value="${nombrePasillo}_${pasillo + 1}" name="Pasillos[${pasillo}].Nombre" />`);
+            .append(`<input type="hidden" value="${nombrePasillo}_${pasillo + 1}" name="Pasillos[${pasillo}].Nombre"/>`);
     }
     function anadirCamposSeccionesAPasillo(elemento, nombrePasillo, pasillo) {
         let cabeceraPasillo = `${nombrePasillo} ${pasillo + 1}`;
@@ -107,6 +110,8 @@ function mostrarSecciones(pasillo) {
     for (var seccion = 0; seccion < numeroSeccion; seccion++) {
         anadirSeccion('#insertarSeccion', pasillo, nombreSeccion, seccion);
     }
+    $('.activar-flecha').off();
+    $('.activar-flecha').click(abrirCerrarFlecha);
 }
 function anadirSeccion(elemento, pasillo, nombreSeccion, seccion) {
     anadirCamposColumnasASecciones(elemento, pasillo, nombreSeccion, seccion);
@@ -148,40 +153,82 @@ function insertarSeccionHidden(pasillo, seccion) {
     }
 }//Haccer llegar el numero de almacen o añadirlo aqui
 function stringColumnasFilas(pasillo, seccion) {
-    return `<div class="flecha">
-                <h1 class="insertarNombreSeccion" id="seccionUnica_${pasillo}${seccion}"}></h1> 
-                <input type="hidden" value="${pasillo}" id="inputSeccion_${pasillo}${seccion}"} name="Pasillos[${pasillo}].Secciones[${seccion}].Nombre">
-                <hr>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Numero de columnas</label> 
-                <input id="numeroDeColumnas_${pasillo}${seccion}" name="numeroDeColumnas_${seccion}" class="form-control"/>
-                <span class="text-danger"></span>
-                <div id="insertarHiddenColumna_${pasillo}${seccion}"></div>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Numero de filas</label>
-                <input id="numeroDeFilas_${pasillo}${seccion}" name="numeroDeFilas_${seccion}" class="form-control"/>
-                <div id="insertarHiddenFila_${pasillo}${seccion}"></div>
+    return `<div class="row">
+                <div class="flecha form-group col-12 mx-auto textoTitulo">
+                    <h4 class="insertarNombreSeccion activar-flecha" data-toggle="collapse" href="#insertarHiddenFila_${pasillo}${seccion}-ocultar"><i class="icono plus fa fa-angle-right tiempo-giro flecha-abierta"></i>Sección: <span id="seccionUnica_${pasillo}${seccion}" class="color-nombre"></span></h4> 
+                    <input type="hidden" value="${pasillo}" id="inputSeccion_${pasillo}${seccion}"} name="Pasillos[${pasillo}].Secciones[${seccion}].Nombre">
+                    <hr class="linea mx-auto"/>
+                 </div>
+                <div id="insertarHiddenFila_${pasillo}${seccion}-ocultar" class="row collapse show">
+                    <div class="form-group ajustar-padding-columnajs col-6">
+                        <label class="control-label">Numero de columnas</label> 
+                        <input id="numeroDeColumnas_${pasillo}${seccion}" name="numeroDeColumnas_${seccion}" class="form-control"/>
+                        <span class="text-danger"></span>
+                        <div id="insertarHiddenColumna_${pasillo}${seccion}"></div>
+                    </div>
+                    <div class="form-group ajustar-padding-columnajs col-6">
+                        <label class="control-label">Numero de filas</label>
+                        <input id="numeroDeFilas_${pasillo}${seccion}" name="numeroDeFilas_${seccion}" class="form-control"/>
+                        <div id="insertarHiddenFila_${pasillo}${seccion}"></div>
+                    </div>
+                </div>
             </div>`;
 }
-function stringSecciones(idElementoPasillo, cabeceraPasillo, pasillo) {
-    return `<div class="flecha">
-                <h1 class="insertarNombrePasillo" id="${idElementoPasillo}">${cabeceraPasillo}</h1> 
-                <hr>
+
+function stringSecciones(idElementoPasillo, cabeceraPasillo, pasillo) {    
+    return `<div class="row">
+            <div class="flecha form-group col-12 mx-auto textoTitulo">
+                <h4 class="insertarNombrePasillo activar-flecha" id="${idElementoPasillo}" data-toggle="collapse" href="#insertarSeccion${pasillo}-ocultar"><i class="icono plus fa fa-angle-right tiempo-giro flecha-abierta"></i>Pasillo: <span class="color-nombre">${cabeceraPasillo}</span></h4> 
+                <hr class="linea mx-auto"/>
             </div>
-            <div class="form-group">
-                <label class="control-label">Numero de secciones</label>
-                <input id="NumeroDeSecciones${pasillo}" class="form-control"/>
+            <div id="insertarSeccion${pasillo}-ocultar" class="row collapse show">
+                <div class="form-group ajustar-padding col-6">
+                    <label class="control-label">Numero de secciones</label>
+                    <input id="NumeroDeSecciones${pasillo}" class="form-control"/>
+                </div>
+                <div class="form-group ajustar-padding col-6">
+                    <label class="control-label">Nombre de sección</label>
+                    <input id="Pasillos_${pasillo}" class="form-control"/>
+                    <span class="text-danger"></span>
+                </div>
+                <div id="insertarSeccion${pasillo}"></div>
             </div>
-            <div>
-                <label class="control-label">Nombre de sección</label>
-                <input id="Pasillos_${pasillo}" class="form-control"/>
-                <span class="text-danger"></span>
-            </div>
-            <div id="insertarSeccion${pasillo}"></div>`;
+            </div>`;
 }
 
-$('.tiempo-giro').click(function () {
-    $(this).toggleClass('flecha-abierta');
+    $('.activar-flecha').click(function () {
+        $(this).children('i').toggleClass('flecha-abierta');
+    });
+
+$(document).ready(function () {
+    $(".flecha-abajo").click(function () {
+        $(".flecha-derecha").slideToggle(300);
+    });
+});
+
+function abrirCerrarFlecha() {
+    $(this).children('i').toggleClass('flecha-abierta');
+}
+
+//-------------Animacion Index-----------------
+
+document - addEventListener('DOMContentLoaded', function () {
+    let wrapper = document.getElementById('wrapper');
+    let topLayer = wrapper.querySelector('.top');
+    let handle = wrapper.querySelector('.handle');
+    let skew = 0;
+    let delta = 0;
+
+    if (wrapper.className.indexOf('skewed') != -1) {
+        skew = 990;
+    }
+
+    wrapper.addEventListener('mousemove', function (e) {
+        delta = (e.clientX - window.innerWidth / 2) * 0.5;
+
+        handle.style.left = e.clientX + delta + 'px';
+
+        topLayer.style.width = e.clientX + skew + delta + 'px';
+
+    })
 });

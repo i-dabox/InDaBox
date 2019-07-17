@@ -7,127 +7,139 @@
 
 <h1>Edit</h1>
 
+<div class="setting-distancia">
 
-<div class="row">
-    <div class="centrar">
+    <div class="row">
+        <div class="centrar">
 
-        <div class="col-6">
+            <div class="col-6">
 
-            <form asp-action="Edit" class="row">
+                <form asp-action="Edit" class="row">
 
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" />
-                <div class="row">
-                    <h4 class="col-12"><i class="icono plus fas fa-angle-right"></i>Almacen</h4>
-                    <hr class="linea mx-auto" />
-                </div>
-
-                <div class="form-group tamaño mx-auto col-6">
-                    <label asp-for="Nombre" class="control-label"></label>
-                    <input asp-for="Nombre" class="form-control" />
-                    <span asp-validation-for="Nombre" class="text-danger"></span>
-                </div>
-                <div class="form-group tamaño col-6">
-                    <label asp-for="Direccion" class="control-label"></label>
-                    <input asp-for="Direccion" class="form-control" />
-                    <span asp-validation-for="Direccion" class="text-danger"></span>
-                </div>
-                <div class="form-group tamaño col-6">
-                    <label asp-for="CodigoPostal" class="control-label"></label>
-                    <input asp-for="CodigoPostal" class="form-control" />
-                    <span asp-validation-for="CodigoPostal" class="text-danger"></span>
-                </div>
-                <div class="form-group tamaño col-6">
-                    <label asp-for="Poblacion" class="control-label"></label>
-                    <input asp-for="Poblacion" class="form-control" />
-                    <span asp-validation-for="Poblacion" class="text-danger"></span>
-                </div>
-
-                <div id="anadirForm" class="d-none">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id"/>
                     <div class="row">
-                        <h1><i class="icono fa fa-angle-right"></i>Pasillo</h1> <!--icono-->
-                        <hr>
+                        <h4 class="col-12 activar-flecha" data-toggle="collapse" href="#a-collapse-almacen"><i class="icono plus fas fa-angle-right tiempo-giro"></i>Almacen: <span class="color-nombre">Nombre</span></h4>
+                        <hr class="linea mx-auto"/>
                     </div>
-                    <div>
-                        <label for="numeroDePasillo" class="control-label">Numero de pasillos</label>
-                        <input id="numeroDePasillo" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Nombre de pasillo</label>  <!-- cuidado no es nombre de almacen -->
-                        <input class="form-control" id="nombrePasillo" />
-                        <span class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <div id="insertarPasillo"></div>
-                    </div>
-                    <div id="nuevoPasillo"></div>
-                </div>
+                    <div id="a-collapse-almacen" class="collapse row">
 
-                <div id="container">
-                    <button class="btnanadir Anadir"><i class="icono plus fas fa-plus"></i>Añadir Pasillo</button>
-                    @{
-                        foreach (Pasillo pasillo in Model.Pasillos)
-                        {
-                            <div class="pasillo" id="@pasillo.Id">
-                                @{
-                                    <div class="form-group col-12 mx-auto textoTitulo">
-                                        <h4 class="col-12"><i class="icono plus fas fa-angle-right tiempo-giro"></i>Pasillo:</h4>
-                                        <hr class="linea mx-auto" />
-                                    </div>
-                                    <div class="form-group col-6">
-                                        <label asp-for="@pasillo.Nombre" class="control-label">Nombre pasillo</label>
-                                        <input asp-for="@pasillo.Nombre" value="@pasillo.Nombre" class="form-control tamaño" />
-                                        <span asp-validation-for="@pasillo.Nombre" class="text-danger"></span>
-                                    </div>
-                                    @foreach (Seccion seccion in pasillo.Secciones)
-                                    {
-                                        <div class="seccion">
-                                            <div class="form-group col-12 mx-auto textoTitulo">
-                                                <h4 class="col-12"><i class="icono plus fas fa-angle-right"></i>Sección:</h4>
-                                                <hr class="linea mx-auto" />
-                                            </div>
-                                            <div class="form-group col-6">
-                                                <label asp-for="@seccion.Nombre" class="control-label">Nombre sección</label>
-                                                <input asp-for="@seccion.Nombre" class="form-control tamaño" />
-                                                <span asp-validation-for="@seccion.Nombre" class="text-danger"></span>
-                                            </div>
-                                        </div>
+                        <div class="form-group tamaño mx-auto col-6">
+                            <label asp-for="Nombre" class="control-label"></label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+                        <div class="form-group tamaño col-6">
+                            <label asp-for="Direccion" class="control-label"></label>
+                            <input asp-for="Direccion" class="form-control" />
+                            <span asp-validation-for="Direccion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group tamaño col-6">
+                            <label asp-for="CodigoPostal" class="control-label"></label>
+                            <input asp-for="CodigoPostal" class="form-control" />
+                            <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                        </div>
+                        <div class="form-group tamaño col-6">
+                            <label asp-for="Poblacion" class="control-label"></label>
+                            <input asp-for="Poblacion" class="form-control" />
+                            <span asp-validation-for="Poblacion" class="text-danger"></span>
+                        </div>
+                    </div>
 
-                                        @foreach (Columna columna in seccion.Columnas)
-                                        {
-                                            <div class="columna">
-                                                <div class="form-group col-12 mx-auto textoTitulo">
-                                                    <h4 class="col-12"><i class="icono plus fas fa-angle-right"></i>Columnas:</h4>
-                                                    <hr class="linea mx-auto" />
-                                                    <label asp-for="@columna.Nombre" class="control-label">Nombre columna</label>
-                                                    <input asp-for="@columna.Nombre" class="form-control tamaño" />
-                                                    <span asp-validation-for="@columna.Nombre" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                            @foreach (Fila fila in columna.Filas)
-                                            {
-                                                <div class="columna">
-                                                    <div class="form-group col-6">
-                                                        <label asp-for="@fila.Nombre" class="control-label">Fila</label>
-                                                        <input asp-for="@fila.Nombre" class="form-control tamaño" />
-                                                        <span asp-validation-for="@fila.Nombre" class="text-danger"></span>
-                                                    </div>
-                                                </div>
-                                            }
-
-                                        }
-                                    }
-                                    <br />
-                                    <button id="@pasillo.Id" class="btnBorrar"><i class="icono plus fas fa-plus"></i>Borrar Pasillo</button>
-                                }
+                    <div id="anadirForm" class="d-none">
+                        <div class="row">
+                            <div class="form-group col-12 mx-auto textoTitulo">
+                                <h4 class="col-12 activar-flecha"><i class="icono plus fa fa-angle-right tiempo-giro"></i><span class="color-nombre">Configurar nuevos pasillos</span></h4> <!--icono-->
+                                <hr class="linea mx-auto"/>
                             </div>
-                        }
-                    }
-                    <div class="form-group">
-                        <input type="submit" value="Save" class="btn btn-primary" />
+                            <div class="form-group ajustar-padding col-6">
+                                <label for="numeroDePasillo" class="control-label">Numero de pasillos</label>
+                                <input id="numeroDePasillo" class="form-control"/>
+                            </div>
+                            <div class="form-group ajustar-padding col-6">
+                                <label class="control-label">Nombre de pasillo</label>  <!-- cuidado no es nombre de almacen -->
+                                <input class="form-control" id="nombrePasillo"/>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div id="insertarPasillo"></div>
+                            </div>
+                        </div>
+                        <div id="nuevoPasillo"></div>
                     </div>
-                </div>
-            </form>
+
+                    <div id="container">
+                        <div class="btn-setting">
+                            <button class="btnanadir Anadir"><i class="signo plus fas fa-plus"></i>Añadir Pasillos</button>
+                        </div>
+                        @{
+                            foreach (Pasillo pasillo in Model.Pasillos)
+                            {
+                                <div class="pasillo" id="@pasillo.Id">
+                                    @{
+                                        <div class="form-group col-12 mx-auto textoTitulo" data-toggle="collapse" href="#p-@pasillo.Id-collapse-pasillo">
+                                            <h4 class="col-12 activar-flecha"><i class="icono plus fas fa-angle-right tiempo-giro"></i>Pasillo: <span class="color-nombre">@pasillo.Nombre</span></h4>
+                                            <hr class="linea mx-auto"/>
+                                        </div>
+                                        <div class="form-group ajustar-padding col-6">
+                                            <label asp-for="@pasillo.Nombre" class="control-label">Nombre pasillo</label>
+                                            <input asp-for="@pasillo.Nombre" value="@pasillo.Nombre" class="form-control tamaño"/>
+                                            <span asp-validation-for="@pasillo.Nombre" class="text-danger"></span>
+                                        </div>
+                                        @foreach (Seccion seccion in pasillo.Secciones)
+                                        {
+                                            <div id="p-@pasillo.Id-collapse-pasillo" class="seccion collapse">
+                                                <div class="form-group col-12 mx-auto textoTitulo" data-toggle="collapse" href="#s-@seccion.Id-collapse-seccion">
+                                                    <h4 class="col-12 activar-flecha"><i class="icono plus fas fa-angle-right tiempo-giro"></i>Sección: <span class="color-nombre">@seccion.Nombre</span></h4>
+                                                    <hr class="linea mx-auto"/>
+                                                </div>
+                                                <div class="form-group ajustar-padding col-6">
+                                                    <label asp-for="@seccion.Nombre" class="control-label">Nombre sección</label>
+                                                    <input asp-for="@seccion.Nombre" class="form-control tamaño" />
+                                                    <span asp-validation-for="@seccion.Nombre" class="text-danger"></span>
+                                                </div>
+                                                @foreach (Columna columna in seccion.Columnas)
+                                                {
+                                                    <div id="s-@seccion.Id-collapse-seccion" class="columna collapse">
+                                                        <div class="form-group col-12 mx-auto textoTitulo">
+                                                            <h4 class="col-12 activar-flecha" data-toggle="collapse" href="#c-@columna.Id-collapse-columna"><i class="icono plus fas fa-angle-right tiempo-giro"></i>Columnas: <span class="color-nombre">@columna.Nombre</span></h4>
+                                                            <hr class="linea mx-auto"/>
+                                                            <div class="form-group ajustar-padding-columna col-6">
+                                                                <label asp-for="@columna.Nombre" class="control-label">Nombre columna</label>
+                                                                <input asp-for="@columna.Nombre" class="form-control tamaño" />
+                                                                <span asp-validation-for="@columna.Nombre" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+                                                        @foreach (Fila fila in columna.Filas)
+                                                        {
+                                                            <div class="fila collapse" id="c-@columna.Id-collapse-columna">
+                                                                <div class="form-group ajustar-padding col-6">
+                                                                    <label asp-for="@fila.Nombre" class="control-label">Fila</label>
+                                                                    <input asp-for="@fila.Nombre" class="form-control tamaño" />
+                                                                    <span asp-validation-for="@fila.Nombre" class="text-danger"></span>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    </div>
+
+                                                }
+                                            </div>
+                                        }
+                                        <br />
+                                        <div class="btn-setting">
+                                            <button id="@pasillo.Id" class="btnBorrar"><i class="signo plus fas fa-plus"></i>Borrar Pasillo</button>
+
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        }
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="guardar" />
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

@@ -1,40 +1,47 @@
 ﻿body {
 }
+
 .centrar {
-    display:flex;
-    justify-content:center;
-    width:100%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
-.row {   
+.setting-distancia{
+    margin-top:200px;
+}
+.row {
     margin: 0;
     width: 100%;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    color: #272a39;    
+    color: #272a39;
 }
 
 .row h4 i {
     color: #272a39;
     padding-right: 8px;
 }
+
 .row h4 {
-    color: #272a39;
-    padding-right: 8px;
-    font-weight: 700;
-    font-size:20pt;
+     color: #272a39;
+     padding-right: 8px;
+     font-weight: 700;
+     font-size: 20pt;
 }
+
 .tamaño {
     width: 300px;
 }
+
 #container {
     width: 100%;
 }
+
 .linea {
     border: 2px solid #272a39;
     border-radius: 10px;
     background: #272a39;
     width: 100%;
-
     padding-top: 0;
     margin-top: -5px;
 }
@@ -44,36 +51,126 @@
     margin-top: 18px;
     color: #272a39;
 }
+.textoTitulo h4{
+    font-size:16pt;
+}
+.ajustar-padding {
+    padding-left: 30px;
+}
 
+.ajustar-padding-columna {
+    padding-left: 15px;
+}
+.ajustar-padding-columnajs {
+    padding-left: 30px;
+}
+.pasillo {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.seccion {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.columna {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.color-nombre {
+    color: #d1d1d1;
+}
 /*-------Botones e iconos-------*/
-.btnanadir,
+.btnanadir {
+    border: solid;
+    border-radius: 22px;
+    border-color: #272a39;
+    background-color: #fff;
+    margin-left: 35%;
+    margin-top: 18px;
+    padding: 10px 10px;
+    width: 30%;
+    font-weight: 600;
+}
+
+.guardar {
+    border: solid;
+    border-radius: 22px;
+    border-color: #272a39;
+    background-color: #fff;
+    margin-left: 35%;
+    margin-top: -2px;
+    padding: 10px 10px;
+    width: 13%;
+    font-weight: 600;
+}
+#botonCrear {
+    border: solid;
+    border-radius: 22px;
+    border-color: #272a39;
+    background-color: #fff;
+    margin-left: 35%;
+    margin-top: -2px;
+    padding: 10px 30px;
+    font-weight: 600;
+}
+#botonCrear:hover {
+    color: #fff;
+    border-color: #fff;
+    background-color: #d1d1d1;
+}
+.guardar:hover {
+    color: #fff;
+    border-color: #fff;
+    background-color: #d1d1d1;
+}
+
 .btnBorrar {
     border: solid;
     border-radius: 22px;
     border-color: #272a39;
     background-color: #fff;
-    margin-left: 40%;
-    margin-top: 18px;
+    margin-left: 35%;
+    margin-top: -2px;
+    margin-bottom: 10px;
     padding: 10px 10px;
-    width: 20%;
+    width: 30%;
     font-weight: 600;
 }
+
+.btn-setting:hover .signo {
+    color: #fff;
+    border-color: #fff;
+    background-color: #d1d1d1;
+}
+.btn-setting:hover .btnanadir {
+    color: #fff;
+    border-color: #fff;
+    background-color: #d1d1d1;
+}
+.btn-setting:hover .btnBorrar {
+    color: #fff;
+    border-color: #fff;
+    background-color: #d1d1d1;
+}
+
 .icono,
 .plus {
     color: #272a39;
     padding-right: 8px;
 }
+
 .flecha-abierta {
     transform: rotate(90deg);
 }
+
 .tiempo-giro {
-    transition: all 0.5s;
+    transition: transform 0.5s ease;
+    transform-origin: 25% 45%;
 }
-.flecha-derecha {
-    background-image: url('../img/arrow-point-to-right.svg');
-    width:5px;
-}
-.flecha-abajo {
-    background-image: url('../img/arrow-down-sign-to-navigate.svg');
-    width: 5px;
+
+.btnanadir :hover {
+    color: white;  
 }
