@@ -31,7 +31,7 @@
 <div class="titulo">
     <h1>Productos</h1>
 </div>
-<div class="row"  id="pictorow">
+<div class="row" id="pictorow">
     <div class="col-1 ">
     </div>
     <div class="col-2 ">
@@ -75,15 +75,18 @@
                     }
                     else
                     {
-                        <a class="btn BotonInsertarLocalizacion" id="@producto.Id" data-toggle="modal" data-target="#insertLocation">Insertar Localizacion</a>
+                        <a class="btn BotonInsertarLocalizacion" id="@producto.Id" data-toggle="modal" data-target="#insertLocation">Insertar localización</a>
                     }
                 </div>
                 <div>
                     <!-- Button trigger modal -->
                     <a class="btn BotonEditar" id="@producto.Id" data-toggle="modal" data-target="#edit">Editar</a>
+                </div>
+                <div>
+                    <a class="btn BotonBorrarLocalizacion" id="@producto.Id" data-toggle="modal" data-target="#deleteLocation">Borrar localización</a>
+                </div>
+                <div>
                     <a class="btn BotonBorrar" id="@producto.Id" data-toggle="modal" data-target="#delete">Borrar</a>
-                    <a class="btn BotonBorrarLocalizacion" id="@producto.Id" data-toggle="modal" data-target="#deleteLocation">Borrar Localizacion</a>
-
                 </div>
             </div>
         </div>

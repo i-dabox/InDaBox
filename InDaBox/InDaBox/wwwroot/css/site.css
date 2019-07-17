@@ -203,6 +203,22 @@ html {
     box-shadow: 5px 12px 16px 0px rgba(0,0,0,0.34);
     height: 100%;
 }
+.BotonEditar {
+    font-size: 10pt !important;
+    color: #a8a6a6 !important;
+}
+.BotonInsertarLocalizacion {
+    font-size: 10pt !important;
+    color: #a8a6a6 !important;
+}
+.BotonBorrar {
+    font-size: 10pt !important;
+    color: #a8a6a6 !important;
+}
+.BotonBorrarLocalizacion {
+    font-size: 10pt !important;
+    color: #a8a6a6 !important;
+}
 
  /*----Log in------*/
 
