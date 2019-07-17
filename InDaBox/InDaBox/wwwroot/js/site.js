@@ -65,8 +65,11 @@ function obtenerDatosCarta(id) {
     var fechaString = $('.datosProducto' + id + '-Caducidad').text();
     var tempDate = '';
     if (fechaString != '') {
-        tempDate = new Date(fechaString).toISOString();
-        tempDate = tempDate.substring(0, tempDate.length - 1);
+        let fechaHoraArray = fechaString.split(' ');
+        let fecha = fechaHoraArray[0];
+        let hora = fechaHoraArray[1];
+        let fechaArray = fecha.split('/');
+        tempDate = `${fechaArray[2]}-${fechaArray[1]}-${fechaArray[0]}T${hora}`;
     }
     var datosProducto = {
         Id: id,
@@ -91,7 +94,7 @@ function InsertarDatosEnModalEdit(datosProducto) {
     $('#Descripcion').attr('value', datosProducto.Descripcion);
     $('#Imagen').attr('value', datosProducto.Imagen);
     $('#Caducidad').attr('value', datosProducto.Caducidad);
-    $(`option:contains(${datosProducto.Localizaciones[0]})`).attr('selected','selected');
+    $(`option:contains(${datosProducto.Localizaciones[0]})`).attr('selected', 'selected');
     $('#Cantidad').attr('value', datosProducto.Cantidad);
 
 }
@@ -245,7 +248,7 @@ function stringColumnasFilas(pasillo, seccion) {
             </div>`;
 }
 
-function stringSecciones(idElementoPasillo, cabeceraPasillo, pasillo) {    
+function stringSecciones(idElementoPasillo, cabeceraPasillo, pasillo) {
     return `<div class="row">
             <div class="flecha form-group col-12 mx-auto textoTitulo">
                 <h4 class="insertarNombrePasillo activar-flecha" id="${idElementoPasillo}" data-toggle="collapse" href="#insertarSeccion${pasillo}-ocultar"><i class="icono plus fa fa-angle-right tiempo-giro flecha-abierta"></i>Pasillo: <span class="color-nombre">${cabeceraPasillo}</span></h4> 
@@ -266,9 +269,9 @@ function stringSecciones(idElementoPasillo, cabeceraPasillo, pasillo) {
             </div>`;
 }
 
-    $('.activar-flecha').click(function () {
-        $(this).children('i').toggleClass('flecha-abierta');
-    });
+$('.activar-flecha').click(function () {
+    $(this).children('i').toggleClass('flecha-abierta');
+});
 
 $(document).ready(function () {
     $(".flecha-abajo").click(function () {
