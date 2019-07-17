@@ -35,7 +35,7 @@ a {
     /*min-width: 300px;*/
     /*margin:50px;*/
     /*display:inline-block;*/ /*preguntar*/
-    line-height: 30px;
+    line-height: 25px;
     flex: 0 0 450px;
     color: #fff;
 }
@@ -51,14 +51,14 @@ a {
 }
 
 .btn-almacen {
-    font-size: 28pt;
+    font-size: 16pt;
     color: #fff;
     font-weight: 600;
     margin-left: 40px;
 }
 
     .btn-almacen:hover {
-        font-size: 28pt;
+        font-size: 16pt;
         color: purple;
         font-weight: 600;
         margin-left: 40px;
@@ -69,7 +69,7 @@ a {
     padding-left: 20px;
     list-style: none;
     padding-left: 40px;
-    margin-top: 24px;
+    margin-top: 20px;
 }
 
     .container-menu .menu i {
@@ -115,4 +115,18 @@ p {
 
 .guardados {
     margin-left: 25px;
+}
+
+.logo {
+    padding-top: 30px;
+    padding-left: 40px;
+    padding-bottom: 30px;
+}
+.form-inline {
+   padding-top: 50px;
+   padding-left:40px;
+}
+#privacy{
+    margin-top:60px;
+
 }
