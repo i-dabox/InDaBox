@@ -50,7 +50,7 @@ namespace InDaBox.Controllers
         public IActionResult Create()
         {
             ViewData["FilaId"] = new SelectList(_context.Fila, "Id", "Nombre");
-            ViewData["ProductoId"] = new SelectList(_context.Producto.Where(prod=>prod.Borrado == false).Where(loc=>loc.Localizaciones.Count==0) , "Id", "Nombre");
+            ViewData["ProductoId"] = new SelectList(_context.Producto.Where(prod => prod.Borrado == false).Where(loc => loc.Localizaciones.Count == 0), "Id", "Nombre");
             return View();
         }
 
@@ -115,7 +115,7 @@ namespace InDaBox.Controllers
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
-                {   
+                {
                     if (!LocalizacionExists(localizacion.Id))
                     {
                         return NotFound();
@@ -157,10 +157,13 @@ namespace InDaBox.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var localizacion = await _context.Localizacion.FindAsync(id);
-            _context.Localizacion.Remove(localizacion);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var localizacion = await _context.Localizacion.FirstOrDefaultAsync(loc => loc.ProductoId == id);
+            if (localizacion != null)
+            {
+                _context.Localizacion.Remove(localizacion);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Index", "Productos");
         }
 
         private bool LocalizacionExists(int id)

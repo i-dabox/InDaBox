@@ -30,9 +30,14 @@ namespace InDaBox.Controllers
         // GET: Productos
         public async Task<IActionResult> Index(string busqueda)
         {
-            
-            List<Producto> Productos = await _productoServices.BusquedaProducto(busqueda);
-            return View(Productos);
+            ProductoLocacionVM productoLocacion = new ProductoLocacionVM()
+            {
+                Productos = await _productoServices.BusquedaProducto(busqueda),
+                Localizaciones = await _context.Localizacion.Include(l => l.Fila).Include(l => l.Producto).ToListAsync()
+
+            };
+            ViewData["FilaId"] = new SelectList(_context.Fila, "Id", "Nombre");
+            return View(productoLocacion);
 
             //List<Localizacion> localizaciones = await _localizacionServices.BusquedaLocalizacion(busqueda);
             //return View(localizaciones);
@@ -42,27 +47,27 @@ namespace InDaBox.Controllers
 
         // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
             {
-                if (id == null)
-                {
-                    return NotFound();
-                }
-
-                var producto = await _context.Producto
-                    .FirstOrDefaultAsync(m => m.Id == id);
-                if (producto == null)
-                {
-                    return NotFound();
-                }
-
-                return View(producto);
+                return NotFound();
             }
 
-            // GET: Productos/Create
-            public IActionResult Create()
+            var producto = await _context.Producto
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (producto == null)
             {
-                return View();
+                return NotFound();
             }
+
+            return View(producto);
+        }
+
+        // GET: Productos/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
 
         // POST: Productos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -95,9 +100,9 @@ namespace InDaBox.Controllers
             {
                 return NotFound();
             }
-            ViewData["localizaciones"] =await _context.Fila.ToListAsync();
+            ViewData["localizaciones"] = await _context.Fila.ToListAsync();
             ViewData["FilaId"] = _context.Producto.Include(x => x.Localizaciones).ThenInclude(x => x.Fila).Where(x => x.Id == id).ToListAsync();
-            var producto = await _context.Producto.Include(x=>x.Localizaciones).ThenInclude(x=>x.Fila).Where(x=>x.Id==id).FirstOrDefaultAsync();
+            var producto = await _context.Producto.Include(x => x.Localizaciones).ThenInclude(x => x.Fila).Where(x => x.Id == id).FirstOrDefaultAsync();
             if (producto == null)
             {
                 return NotFound();
@@ -110,15 +115,29 @@ namespace InDaBox.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Imagen,Caducidad,Cantidad,Borrado,")] Producto producto)
+        public async Task<IActionResult> Edit(int id, int localizacionId, [Bind("Id,Nombre,Descripcion,Imagen,Caducidad,Cantidad,Borrado")] Producto productoEditado)
         {
-            if (id != producto.Id)
+            if (id != productoEditado.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                Producto producto = await _context.Producto.Include(prod => prod.Localizaciones).FirstOrDefaultAsync(prod => prod.Id == id);
+                producto.Nombre = productoEditado.Nombre;
+                producto.Descripcion = productoEditado.Descripcion;
+                producto.Imagen = productoEditado.Imagen;
+                producto.Caducidad = productoEditado.Caducidad;
+                producto.Cantidad = productoEditado.Cantidad;
+                producto.Borrado = productoEditado.Borrado;
+                Localizacion localizacion = await _context.Localizacion.FirstOrDefaultAsync(loc => loc.ProductoId == producto.Id);
+                if (localizacion != null)
+                {
+                    localizacion.FilaId = localizacionId;
+                    producto.Localizaciones.Add(localizacion);
+                }
+
                 try
                 {
                     _context.Update(producto);
@@ -135,9 +154,8 @@ namespace InDaBox.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(producto);
+            return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> BorrarProductosRotos(int id, int productosRotos)
         {

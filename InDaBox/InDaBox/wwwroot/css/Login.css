@@ -1,12 +1,16 @@
 ﻿#Contenedor {
-    padding-left: 30px;
-    padding-top: 20px;
-    padding-right: 30px;
+    /*padding-left: 30px;*/
+    padding-top: 30px;
+   /*padding-right: 30px;*/
     padding-bottom: 20px;
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(#47b68b,#4d82b4);
-    border-radius: 10px;
-    margin: auto;
+    background: linear-gradient(rgb(209,209,209),#272a39);
+    border-radius: 15px;
+    /*margin: auto;*/
     box-sizing: border-box;
     color: white;
+}
+.logo{
+    padding-top:20px;
+    padding-bottom:30px;
 }

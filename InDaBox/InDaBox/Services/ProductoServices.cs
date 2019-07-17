@@ -67,7 +67,6 @@ namespace InDaBox.Services
             }
             else
             {
-
                 return await _context.Producto.Where(producto => producto.Borrado != true).Include(loc => loc.Localizaciones).ThenInclude(a => a.Fila).ToListAsync();
             }
         }

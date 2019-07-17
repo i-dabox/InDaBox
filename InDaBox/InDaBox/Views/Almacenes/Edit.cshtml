@@ -3,7 +3,12 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<link rel="stylesheet" href="~/css/Formulario.css">
+@section navBtn {
+    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+    <a class="nav-link text-white" asp-controller="Almacenes" asp-action="Index">Almacenes</a>
+    <a class="nav-link text-white" asp-controller="Productos" asp-action="Index">Productos</a>
+}
+
 
 <h1>Edit</h1>
 

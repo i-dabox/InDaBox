@@ -7,6 +7,11 @@
 //seccion de elementos
 $('.Borrar').click(eventoBorrarPasillo);
 $('.Anadir').click(eventoMostrarCamposAnadirPasillo);
+$('.BotonEditar').click(eventoMandarIdAModalEditar);
+$('.BotonBorrar').click(eventoMandarIdAModalBorrar);
+$('.BotonBorrarLocalizacion').click(eventoMandarIdAModalBorrarLocalizacion);
+$('.BotonInsertarLocalizacion').click(eventoInsertarProductoEnModalLocalizacion)
+$('.Cerrar').click(eventoVaciarModal);
 
 //Eventos
 function eventoBorrarPasillo(event) {
@@ -14,12 +19,37 @@ function eventoBorrarPasillo(event) {
     let id = $(this).attr('id');
     borrarPasillo(id);
 }
-
 function eventoMostrarCamposAnadirPasillo(event) {
     event.preventDefault();
     mostrarCamposAnadirPasillo();
 }
-
+function eventoMandarIdAModalEditar(event) {
+    event.preventDefault();
+    let id = $(this).attr('id');
+    obtenerDatosCarta(id);
+}
+function eventoMandarIdAModalBorrar(event) {
+    event.preventDefault();
+    let id = $(this).attr('id');
+    insertarIdBorrarProducto(id);
+}
+function eventoMandarIdAModalBorrarLocalizacion(event) {
+    event.preventDefault();
+    let id = $(this).attr('id');
+    insertarIdBorrarLocalizacion(id);
+}
+function eventoVaciarModal(event) {
+    event.preventDefault();
+    $('#LocalizacionesCaja').empty();
+    $('#mostrarProducto').empty();
+}
+function eventoInsertarProductoEnModalLocalizacion(event) {
+    event.preventDefault();
+    let id = $(this).attr('id');
+    let nombre = $('.datosProducto' + id + '-Nombre').text();
+    $('#productoId').attr('value', id);
+    $('#mostrarProducto').append(nombre);
+}
 
 $('form input').keydown(function (e) {
     if (e.keyCode === 13) {
@@ -27,11 +57,51 @@ $('form input').keydown(function (e) {
         return false;
     }
 });
-
 $('#numeroDePasillo').change(mostrarPasillos);
 $('#nombrePasillo').change(mostrarPasillos);
 
 //seccion de metodos
+function obtenerDatosCarta(id) {
+    var fechaString = $('.datosProducto' + id + '-Caducidad').text();
+    var tempDate = '';
+    if (fechaString != '') {
+        tempDate = new Date(fechaString).toISOString();
+        tempDate = tempDate.substring(0, tempDate.length - 1);
+    }
+    var datosProducto = {
+        Id: id,
+        Nombre: $('.datosProducto' + id + '-Nombre').text(),
+        Descripcion: $('.datosProducto' + id + '-Descripcion').text(),
+        Imagen: $('.datosProducto' + id + '-Imagen').text(),
+        Caducidad: tempDate,
+        Localizaciones: [],
+        Cantidad: $('.datosProducto' + id + '-Cantidad').text()
+    };
+
+    $('.datosProducto' + id + '-Localizacion').each(function () {
+        let Localizacion = $(this).text();
+        datosProducto.Localizaciones.push(Localizacion);
+    })
+    InsertarDatosEnModalEdit(datosProducto);
+}
+function InsertarDatosEnModalEdit(datosProducto) {
+    $('#borrarForm').attr('action', '/Productos/Edit/' + datosProducto.Id);
+    $('#Id').attr('value', datosProducto.Id);
+    $('#Nombre').attr('value', datosProducto.Nombre);
+    $('#Descripcion').attr('value', datosProducto.Descripcion);
+    $('#Imagen').attr('value', datosProducto.Imagen);
+    $('#Caducidad').attr('value', datosProducto.Caducidad);
+    $(`option:contains(${datosProducto.Localizaciones[0]})`).attr('selected','selected');
+    $('#Cantidad').attr('value', datosProducto.Cantidad);
+
+}
+
+function insertarIdBorrarProducto(id) {
+    $('#modalBorrarInput').attr('value', id);
+}
+function insertarIdBorrarLocalizacion(id) {
+    $('#modalBorrarLocalizacionInput').attr('value', id);
+}
 function borrarPasillo(id) {
     $('#' + id).remove();
 }
@@ -209,6 +279,13 @@ $(document).ready(function () {
 function abrirCerrarFlecha() {
     $(this).children('i').toggleClass('flecha-abierta');
 }
+function stringLocalizaciones(localizacion) {
+    return `<div class="form-group">
+               <label class="control-label" for="${localizacion}">Localizacion: ${localizacion}</label>
+               <input class="form-control" type="text" data-val="true" data-val-required="The Cantidad field is required." id="${localizacion}" name="Localizacion" value="${localizacion}">
+               <span class="text-danger field-validation-valid" data-valmsg-for="${localizacion}" data-valmsg-replace="true"></span>
+            </div>`
+}//todo clean
 
 //-------------Animacion Index-----------------
 
