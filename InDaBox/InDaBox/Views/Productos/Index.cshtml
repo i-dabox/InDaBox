@@ -1,4 +1,4 @@
-﻿@model IEnumerable<InDaBox.Models.Producto>
+﻿@model InDaBox.Models.ProductoLocacionVM
 
 @{
     ViewData["Title"] = "Index";
@@ -55,32 +55,34 @@
 </div>
 
 <div class="row productosMuestra">
-    @foreach (Producto producto in Model)
+    @foreach (Producto producto in Model.Productos)
     {
         <div class="col-3 pb-4">
             <div class="card">
                 <img class="card-img-top" src=@Url.Content(producto.Imagen)>
                 <div class="card-body">
-                    <h3 class="card-title">Nombre=@producto.Nombre</h3>
+                    <h4 class="card-title datosProducto@(+producto.Id)-Nombre">@producto.Nombre</h4>
+                    <p hidden class="datosProducto@(+producto.Id)-Descripcion">@producto.Descripcion</p>
+                    <p hidden class="datosProducto@(+producto.Id)-Imagen">@producto.Imagen</p>
+                    <p hidden class="datosProducto@(+producto.Id)-Caducidad">@producto.Caducidad</p>
+                    <p hidden class="datosProducto@(+producto.Id)-Cantidad">@producto.Cantidad</p>
                     @if (producto.Localizaciones.Count != 0)
                     {
                         @foreach (Localizacion localizacion in producto.Localizaciones)
                         {
-                            <h3 class="card-title">localizacion=@localizacion.Fila.Nombre </h3>
+                            <h4 class="card-title datosProducto@(+producto.Id)-Localizacion" value="@localizacion.FilaId">@localizacion.Fila.Nombre</h4>
                         }
                     }
                     else
                     {
-                        <a asp-controller="Localizaciones" asp-action="Create">Insertar Localizacion</a>
+                        <a class="btn BotonInsertarLocalizacion" id="@producto.Id" data-toggle="modal" data-target="#insertLocation">Insertar Localizacion</a>
                     }
                 </div>
                 <div>
                     <!-- Button trigger modal -->
                     <a class="btn BotonEditar" id="@producto.Id" data-toggle="modal" data-target="#edit">Editar</a>
-                    @*<a asp-action="Edit" asp-route-id="@producto.Id">Edit</a>*@ |
                     <a class="btn BotonBorrar" id="@producto.Id" data-toggle="modal" data-target="#delete">Borrar</a>
-                    @*<a asp-action="Details" asp-route-id="@producto.Id">Details</a>*@ |
-                    <a asp-action="Delete" asp-route-id="@producto.Id">Delete</a>
+                    <a class="btn BotonBorrarLocalizacion" id="@producto.Id" data-toggle="modal" data-target="#deleteLocation">Borrar Localizacion</a>
 
                 </div>
             </div>
@@ -88,8 +90,8 @@
     }
 </div>
 
-
-<!-- Modal -->
+<!-- Modals -->
+<!-- Modal edit -->
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -99,59 +101,62 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                @*content*@
+            <form action="/Productos/Edit/" id="borrarForm" method="post" novalidate="novalidate">
+                <div class="modal-body">
+                    @*content*@
 
-                @*<form asp-action="Edit">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <input type="hidden" asp-for="Id" />
-                        <div class="form-group">
-                            <label asp-for="Nombre" class="control-label">Nombre</label>
-                            <input asp-for="Nombre" class="form-control" />
-                            <span asp-validation-for="Nombre" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Descripcion" class="control-label">Descripción</label>
-                            <input asp-for="Descripcion" class="form-control" />
-                            <span asp-validation-for="Descripcion" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Imagen" class="control-label">Imagen</label>
-                            <input asp-for="Imagen" class="form-control" />
-                            <span asp-validation-for="Imagen" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Caducidad" class="control-label">Caducidad</label>
-                            <input asp-for="Caducidad" class="form-control" />
-                            <span asp-validation-for="Caducidad" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Cantidad" class="control-label">Cantidad</label>
-                            <input asp-for="Cantidad" class="form-control" />
-                            <span asp-validation-for="Cantidad" class="text-danger"></span>
-                        </div>
 
-                        <div class="form-group form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" asp-for="Borrado" /> @Html.DisplayNameFor(model => model.Borrado)
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Guardar" class="btn btn-primary" />
-                        </div>
-                    </form>*@
+                    <input type="hidden" data-val="true" data-val-required="The Id field is required." id="Id" name="Id" value=" ">
+                    <div class="form-group">
+                        <label class="control-label" for="Nombre">Nombre</label>
+                        <input class="form-control valid" type="text" data-val="true" data-val-maxlength="The field Nombre must be a string or array type with a maximum length of '20'." data-val-maxlength-max="20" data-val-required="The Nombre field is required." id="Nombre" maxlength="20" name="Nombre" value="" aria-describedby="Nombre-error" aria-invalid="false">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Nombre" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="Descripcion">Descripción</label>
+                        <input class="form-control valid" type="text" data-val="true" data-val-maxlength="The field Descripcion must be a string or array type with a maximum length of '1000'." data-val-maxlength-max="1000" id="Descripcion" maxlength="1000" name="Descripcion" value="" aria-describedby="Descripcion-error" aria-invalid="false">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="Imagen">Imagen</label>
+                        <input class="form-control" type="text" id="Imagen" name="Imagen" value="">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Imagen" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="Caducidad">Caducidad</label>
+                        <input class="form-control" type="datetime-local" id="Caducidad" name="Caducidad" value="">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Caducidad" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="Cantidad">Cantidad</label>
+                        <input class="form-control" type="number" data-val="true" data-val-required="The Cantidad field is required." id="Cantidad" name="Cantidad" value="">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Cantidad" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="localizacion.FilaId" class="control-label">Fila</label>
+                        <select id="locationEditField" asp-for="localizacion.FilaId" class="form-control" name="localizacionId" asp-items="ViewBag.FilaId"></select>
+                        <span asp-validation-for="localizacion.FilaId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" data-val="true" data-val-required="The Borrado field is required." id="Borrado" name="Borrado" value=""> Borrado
+                        </label>
+                    </div>
+                    @Html.AntiForgeryToken()
 
-                @*contenido*@
+                    @*contenido*@
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary Cerrar" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" value="Guardar" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
 <!-- Modal delete -->
 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -163,15 +168,70 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-action="Delete">
-                    <input type="hidden" id="modalBorrarInput"  />
-                    <input type="submit" value="Borrado" class="btn btn-danger" /> |
-                    <a asp-action="Index">Volver</a>
-                </form>
+                Esta seguro de que desea eliminar este producto?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <form asp-action="Delete">
+                    <input type="hidden" id="modalBorrarInput" name="id" value=" " />|
+                    <input type="submit" value="Borrar" class="btn btn-danger" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal insert location -->
+<div class="modal fade" id="insertLocation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Insertar localizacion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-controller="Localizaciones" asp-action="Create">
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input hidden id="productoId" asp-for="localizacion.ProductoId" value="" />
+                        <h4 id="mostrarProducto"></h4>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="localizacion.FilaId" class="control-label">Fila</label>
+                        <select asp-for="localizacion.FilaId" class="form-control" asp-items="ViewBag.FilaId"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary Cerrar" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" value="Crear" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Modal borrar localizacion-->
+<div class="modal fade" id="deleteLocation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Borrar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Esta seguro de que desea eliminar esta localizacion?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <form asp-controller="Localizaciones" asp-action="Delete">
+                    <input type="hidden" data-val="true" id="modalBorrarLocalizacionInput" data-val-required="The Id field is required." name="Id" value="">
+                    <input type="submit" value="Eliminar" class="btn btn-danger"> |
+                </form>
             </div>
         </div>
     </div>
