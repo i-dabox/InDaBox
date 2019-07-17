@@ -7,7 +7,7 @@
     <title>@ViewData["Title"] - InDaBox</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
     </environment>
     <environment exclude="Development">
@@ -28,10 +28,10 @@
                 <header class="container-menu sticky-top">
 
                     <div class="col-2">
-                        <img class="logo" src="~/img/Recurso 3logo.svg" />
+                        <a asp-area="" asp-controller="Home" asp-action="Index"><img class="logo" src="~/img/Recurso 3logo.svg" /></a>
                     </div>
 
-                    <h1 class="btn-almacen">
+                    <h1 class="boton-menu">
                         @RenderSection("navBtn", required: false)
                     </h1>
 
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </form>
-                    <hr class="hrLayout" />
+                    
                     @RenderSection("SideMenu", required: false)
 
                     <div class="row">
