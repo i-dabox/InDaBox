@@ -215,13 +215,18 @@ html {
 .columna {
     width: 80%;
     margin: 0 auto;
-
-    /*height: 100%;*/
 }
+
  /*----Log in------*/
 
 .btn {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 12pt;
+}
+
+/*-------- icono-----*/
+.pictogramas{
+    width:60px;
+    height:60px;
 }
