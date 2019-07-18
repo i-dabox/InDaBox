@@ -47,9 +47,9 @@
                 <hr class="hrLayout" />
                 @RenderSection("SideMenu", required: false)
 
-                <div class="row">
-                    <div class="col-4">
-                        <form class="form-inline " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <div class=" botoncerrar row  position-absolute">
+                    <div class=" salida col-4 ">
+                        <form class="form-inline  " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                             <button type="submit" class="nav-link text-white btn btn-link left_colour">Cerrar Sesión</button>
                         </form>
                     </div>
