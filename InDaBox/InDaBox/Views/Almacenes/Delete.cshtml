@@ -3,38 +3,41 @@
 @{
     ViewData["Title"] = "Delete";
 }
-
+@section navBtn {
+    <a class="nav-link text-white" asp-controller="Almacenes" asp-action="Index">Almacenes</a>
+    <a class="nav-link text-white" asp-controller="Productos" asp-action="Index">Productos</a>
+}
 <h3>Está seguro que quiere eliminar este elemento?</h3>
 <div>
     <h4>Almacén</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             Nombre
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Nombre)
         </dd>
-        <dt class = "col-sm-2">
-           Dirección
+        <dt class="col-sm-2">
+            Dirección
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Direccion)
         </dd>
-        <dt class = "col-sm-2">
-           Código Postal
+        <dt class="col-sm-2">
+            Código Postal
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CodigoPostal)
         </dd>
-        <dt class = "col-sm-2">
-           Población
+        <dt class="col-sm-2">
+            Población
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Poblacion)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
