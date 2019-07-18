@@ -37,13 +37,17 @@
 
                 @RenderSection("SideMenu", required: false)
 
+                <div class=" botoncerrar colocar-menu-secundario row  position-absolute">
+                    <div class=" salida col-4 ">
+                        <form class="form-inline  " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button type="submit" class="nav-link text-white btn btn-link left_colour">Cerrar Sesión</button>
+                        </form>
+                    </div>
 
-                <div class="colocar-menu-secundario">
-                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="nav-link btn text-white btn-menu-secundario btn-link left_colour cerrar-sesion">Cerrar sesión</button>
-                    </form>
-                    <div class=" col-3 privacy">
-                        <a class="nav-link text-white btn-menu-secundario" id="homeColor" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <div class="col-3 offset-5" id="privacy">
+                        <div class="nav-item">
+                            <a class="nav-link text-white" id="homeColor" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </div>
                     </div>
                 </div>
 

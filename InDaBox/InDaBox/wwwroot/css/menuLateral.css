@@ -130,10 +130,12 @@ header p {
     padding-bottom: 30px;
 }
 .form-inline {
-   padding-top: 50px;
-   padding-left:40px;
+  
+   margin-left:0;
+   margin-bottom:0;
+
 }
-#privacy{
-    margin-top:60px;
+.botoncerrar{
+    bottom:0;
 
 }
