@@ -18,6 +18,9 @@ a {
 .anclaLateral {
     color: #fff;
 }
+.anclaLateral:hover {
+    color: #fff;
+}
 
 .hrLayout {
     border: 10px solid #fff;
