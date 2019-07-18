@@ -1,0 +1,67 @@
+﻿.titulo-modal-mio {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16pt;
+    text-align: left;
+    padding: 7px;
+    color: #272a39;
+    margin-left: 34px;
+    margin-top: 22px
+}
+.modal-header {
+   
+    border-bottom:none;
+}
+.modal-footer {
+   border-top:none;
+}
+.linea-modal {
+    border: 2px solid #272a39;
+    border-radius: 10px;
+    background: #272a39;
+    width: 80%;
+    padding-top: 0;
+    margin-left: 10%;
+    margin-top: -22px;
+    justify-content: center;
+}
+.style-modal-imput {
+    width: 60%;
+    margin: auto;
+}
+.btn-guardar-modal {
+    border: solid;
+    border-radius: 22px;
+    border-color: #272a39;
+    background-color: #fff;
+    margin-left: 35%;
+    margin-top: 18px;
+    padding: 10px 10px;
+    width: 145%;
+    font-weight: 600;
+    color: #272a39;
+}
+    .btn-guardar-modal:hover {
+        background-color: #5b69bb;
+        color: #fff;
+        border-color: #5b69bb;
+    }
+.btn-cerrar-modal {
+    border: solid;
+    border-radius: 22px;
+    border-color: #272a39;
+    background-color: #fff;
+    margin-left: 35%;
+    margin-top: 18px;
+    padding: 10px 10px;
+    width: 70%;
+    font-weight: 600;
+    color: #272a39;
+}
+.modal-content{
+    border-radius:22px; 
+}
+.texto-borrar{
+    text-align:justify;
+    
+}

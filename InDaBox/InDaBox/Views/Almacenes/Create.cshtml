@@ -4,9 +4,15 @@
     ViewData["Title"] = "Create";
 }
 <link rel="stylesheet" href="~/css/Formulario.css">
+@section navBtn {
 
-<h4>Almacén</h4>
-<hr />
+    <a class="nav-link text-white" asp-controller="Almacenes" asp-action="Index">Almacenes</a>
+    <a class="nav-link text-white" asp-controller="Productos" asp-action="Index">Productos</a>
+}
+<div class="row">
+    <img class="configurar-caja-titulos" src="~/img/Recurso 11titulocrear almacen.svg" />
+    <partial name="_BuscadorPartial" />
+</div>
 <div class="setting-distancia">
 
     <div class="row">
@@ -49,7 +55,7 @@
                                 </div>
                             </div>
                         </div>
-                       
+
                         <div class="form-group col-12 mx-auto textoTitulo">
                             <div id="pasillo">
 
@@ -60,7 +66,7 @@
                                 <div id="a-collapse-configura-pasillo" class="row">
                                     <div class="form-group ajustar-padding col-6">
                                         <label for="numeroDePasillo" class="control-label">Numero de pasillos</label>
-                                        <input id="numeroDePasillo" class="form-control"/>
+                                        <input id="numeroDePasillo" class="form-control" />
                                     </div>
                                     <div class="form-group ajustar-padding col-6">
                                         <label asp-for="Pasillos[0].Nombre" class="control-label">Nombre de pasillo</label>
@@ -77,7 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                       
+
 
                     </div>
                     <div class="form-group">
@@ -92,14 +98,6 @@
 
 
 
-
-
-
-
-
-<div>
-    <a asp-action="Index">Volver</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

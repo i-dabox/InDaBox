@@ -16,7 +16,7 @@ a {
 }
 
 .anclaLateral {
-    color: #fff;
+    color: #fff !important;
 
 }
 .linea-menu {
@@ -42,15 +42,16 @@ a {
 }
 
 .btn-busqueda {
-    font-size: 28pt;
+    font-size: 16pt;
     color: #fff;
     display: block;
     font-weight: 600;
     margin-left: 40px;
-    margin-top: 24px;
     text-align: left;
+} 
+.busquedas-recientes {
+    margin-left: 55px;
 }
-
 .boton-menu {
     font-size: 16pt;
     color: #fff;
@@ -87,6 +88,9 @@ a {
     color: #fff;
     display: block;
     padding: 15px 20px;
+}
+.buscador {
+    transform: translateY(50%);
 }
 
 header p {
