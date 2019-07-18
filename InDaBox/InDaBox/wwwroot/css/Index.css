@@ -105,3 +105,11 @@
         font-size: 75%;
     }
 }
+
+.layer.bottom a {
+    color: #aa5acb;
+}
+
+.layer.top a {
+    color: #272a39;
+}
