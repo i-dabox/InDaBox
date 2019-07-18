@@ -8,49 +8,58 @@
     <a class="nav-link text-white" asp-controller="Productos" asp-action="Index">Productos</a>
 
 }
-<h1>Almacén</h1>
 
-<p>
-    <a asp-action="Create">Crear Nuevo</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Nombre
-            </th>
-            <th>
-                Dirección
-            </th>
-            <th>
-               Código postal 
-            </th>
-            <th>
-                Población
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoPostal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Poblacion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="row">
+    <img class="configurar-caja-titulos-misalmacenes" src="~/img/Recurso 14tituloMISALMA.svg" />
+    <partial name="_BuscadorPartial" />
+</div>
+<div class="boton-crear-almacen">
+
+    <a asp-action="Create">Crear almacen</a>
+
+</div>
+<div class="ajustar-tabla-alamcenes">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Dirección
+                </th>
+                <th>
+                    Código postal
+                </th>
+                <th>
+                    Población
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Direccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CodigoPostal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Poblacion)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

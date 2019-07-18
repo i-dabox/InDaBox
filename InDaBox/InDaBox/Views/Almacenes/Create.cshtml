@@ -9,8 +9,10 @@
 }
 <link rel="stylesheet" href="~/css/Formulario.css">
 
-<h4>Almacén</h4>
-<hr />
+<div class="row">
+    <img class="configurar-caja-titulos" src="~/img/Recurso 11titulocrear almacen.svg" />
+    <partial name="_BuscadorPartial" />
+</div>
 <div class="setting-distancia">
 
     <div class="row">
@@ -96,14 +98,6 @@
 
 
 
-
-
-
-
-
-<div>
-    <a asp-action="Index">Volver</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

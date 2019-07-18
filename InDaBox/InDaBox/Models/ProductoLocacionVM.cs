@@ -9,8 +9,9 @@ namespace InDaBox.Models
     public class ProductoLocacionVM
     {
         public List<Producto> Productos { get; set; }
-        public List<Localizacion>Localizaciones { get; set; }
-        public Localizacion localizacion{ get; set; }
+        public List<Localizacion> Localizaciones { get; set; }
+        public Localizacion localizacion { get; set; }
+        public Producto Producto { get; set; }
 
     }
 }
