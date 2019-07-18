@@ -23,10 +23,10 @@
 }
 
 .row h4 {
-     color: #272a39;
-     padding-right: 8px;
-     font-weight: 700;
-     font-size: 20pt;
+    color: #272a39;
+    padding-right: 8px;
+    font-weight: 700;
+    font-size: 20pt;
 }
 
 .tamaño {
@@ -43,9 +43,8 @@
     background: #272a39;
     width: 100%;
     padding-top: 0;
-    margin-top: -5px;
+    margin-top: 13px;
 }
-
 
 .textoTitulo {
     margin-top: 18px;
@@ -100,10 +99,10 @@
     border-radius: 22px;
     border-color: #272a39;
     background-color: #fff;
-    margin-left: 35%;
-    margin-top: -2px;
+    margin-left: 89%;
+    margin-top: 55px;
     padding: 10px 10px;
-    width: 13%;
+    width: 120%;
     font-weight: 600;
 }
 #botonCrear {
@@ -123,7 +122,7 @@
 }
 .guardar:hover {
     color: #fff;
-    border-color: #fff;
+    
     background-color: #d1d1d1;
 }
 

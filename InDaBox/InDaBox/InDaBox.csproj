@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\img\Recurso 10titulo-misalmacenes.svg" />
     <Content Remove="wwwroot\img\Recurso 1logo.svg" />
+    <Content Remove="wwwroot\img\Recurso 8titulo-almacen.svg" />
+    <Content Remove="wwwroot\img\Recurso 9titulo-productos.svg" />
   </ItemGroup>
 
 

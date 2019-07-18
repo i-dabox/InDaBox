@@ -93,7 +93,7 @@ html {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 45pt;
-    color: #272a39;
+    color: #272a39 !important;
     height: 100%;
     margin-right: 10%;
     z-index: 2;
@@ -167,8 +167,11 @@ html {
 .productosMuestra hr {
     border: 3px;
 }
-
-
+/*------quitar estilo link----*/
+a:hover {
+    text-decoration: none;
+    color: #fff;
+}
 /*--------Card Productos------------*/
 .productosMuestra {
     
@@ -236,4 +239,85 @@ html {
 }
 #pictorow{
     padding:4em;
+}
+
+/*-----buscador----*/
+.lupa{
+    width:52PX;
+}
+
+/*-------Index Almacen-----*/
+.boton-crear-almacen {
+    border: solid;
+    border-radius: 22px;
+    border-color: #272a39;
+    background-color: #fff;
+    margin-left: 35%;
+    margin-top: 100px;
+    margin-bottom: 18px;
+    padding: 10px 29px;
+    width: 13%;
+    font-weight: 600;
+    color: #272a39 !important;
+}
+    .boton-crear-almacen:hover {
+        color: #fff !important;
+        border-color: #fff;
+        background-color: #d1d1d1;
+    }
+
+/*---Layout Productos---*/
+
+.privacy{
+    padding-left:40px;
+    
+}
+.cerrar-sesion{
+    margin-bottom:-5px;
+}
+.btn-menu-secundario {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12pt;
+}
+.colocar-menu-secundario{
+    margin-top:420px;
+}
+
+/*------buscador----*/
+
+.buscador-estilo {
+    border-radius: 22px;
+   
+}
+
+.input-group > .form-control:not(:last-child), .input-group > .custom-select:not(:last-child) {
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+}
+/*input {
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+    border-radius: 22px;
+}*/
+.configurar-caja-titulos {
+    margin-top: 24px;
+    margin-left: 18px;
+    width: 20%;
+}
+.configurar-caja-titulos-misalmacenes {
+    margin-top: 24px;
+    margin-left: 18px;
+    width: 22%;
+}
+/*a {
+    color: #272a39 !important;
+    text-decoration: none;
+    background-color: transparent;
+
+}*/
+.ajustar-tabla-alamcenes{
+    padding:10px;
+    width:90%;
+    margin-left:45px;
 }

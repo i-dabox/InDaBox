@@ -26,42 +26,26 @@
         <div class="row">
             <header class="container-menu sticky-top">
 
-                <div class="col-2">
-                    <a asp-controller="Home" asp-action="Index"><img class="logo" src="~/img/Recurso 3logo.svg" /></a>
+                <div class="col-3">
+                    <a asp-area="" asp-controller="Home" asp-action="Index"><img class="logo" src="~/img/Recurso 3logo.svg" /></a>
                 </div>
 
-                <h1 class="btn-almacen">
+                <h1 class="boton-menu">
                     @RenderSection("navBtn", required: false)
                 </h1>
 
-                <form asp-controller="Productos" asp-action="Index" method="post">
-                    <div class="col-10 m-auto">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="busqueda">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit" style="color:white">Buscar</button>
-                            </span>
-                        </div>
-                    </div>
-                </form>
-                <hr class="hrLayout" />
+
                 @RenderSection("SideMenu", required: false)
 
-                <div class="row">
-                    <div class="col-4">
-                        <form class="form-inline " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                            <button type="submit" class="nav-link text-white btn btn-link left_colour">Cerrar Sesión</button>
-                        </form>
-                    </div>
 
-                    <div class="col-3 offset-5" id="privacy">
-                        <div class="nav-item">
-                            <a class="nav-link text-white" id="homeColor" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </div>
+                <div class="colocar-menu-secundario">
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="nav-link btn text-white btn-menu-secundario btn-link left_colour cerrar-sesion">Cerrar sesión</button>
+                    </form>
+                    <div class=" col-3 privacy">
+                        <a class="nav-link text-white btn-menu-secundario" id="homeColor" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </div>
-
                 </div>
-
 
             </header>
 
